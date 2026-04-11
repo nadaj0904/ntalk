@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan("com.ntalk.choi.repository")
 public class NtalkApplication {
-    //start
+    //start!!
 	public static void main(String[] args) {
 		SpringApplication.run(NtalkApplication.class, args);
 	}
