@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntalk.choi.repository.UserAccountMapper">
+
+    <!-- 로그인 시 사용자 정보 조회 -->
+    <select id="findByAdminId" resultType="com.ntalk.choi.domain.UserAccountDto">
+        SELECT 
+            ADMIN_ID AS adminId,
+            ADMIN_PW AS adminPw,
+            ADMIN_NAME AS adminName,
+            ADMIN_ROLE AS adminRole
+        FROM 
+            TB_NTALK_USER_ACCOUNT
+        WHERE 
+            ADMIN_ID = #{adminId}
+    </select>
+
+</mapper>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"/>
+    <title>바로 발송 - 보험영업지원 시스템</title>
+
+    <!-- 폰트: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <!-- 아이콘: Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/send.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- 좌측 Sidebar (index.html과 동일 구조)       -->
+    <!-- ========================================== -->
+    <aside>
+        <div class="logo-area">
+            <i class="ph-fill ph-shield-check" style="color: var(--primary-color);"></i>
+            <span style="margin-left: 10px;">보험영업지원</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="/index" class="nav-item">
+                <i class="ph ph-squares-four"></i>
+                메인 대시보드 (Home)
+            </a>
+            <a href="/send" class="nav-item active">
+                <i class="ph ph-paper-plane-tilt"></i>
+                바로 발송
+            </a>
+            <a href="/admin/custAdmin" class="nav-item">
+                <i class="ph ph-database"></i>
+                데이터 관리
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/admin/settings" class="admin-settings">
+                <i class="ph ph-gear"></i>
+                관리자 설정
+            </a>
+        </div>
+    </aside>
+
+    <!-- ========================================== -->
+    <!-- 우측 메인 래퍼                              -->
+    <!-- ========================================== -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <header>
+            <div class="header-left">
+                <span>⚡ 바로 발송 — 카카오톡 대행 발송</span>
+            </div>
+            <div class="header-right">
+                <div class="timer-wrapper" title="남은 세션 시간">
+                    <i class="ph ph-clock"></i>
+                    <span class="time-display" id="session-timer">60:00</span>
+                    <button type="button" class="btn-extend" id="btn-extend">연장</button>
+                </div>
+                <div class="user-info">
+                    <div class="avatar" th:text="${user.email != null ? user.email.substring(0,1).toUpperCase() : 'U'}">A</div>
+                    <span th:text="${user.email}">admin@example.com</span>
+                </div>
+                <a href="/logout" class="btn-logout" title="로그아웃">
+                    <i class="ph ph-sign-out"></i>
+                    <span>로그아웃</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="send-main">
+
+            <!-- ================================= -->
+            <!-- 위자드 스텝 인디케이터               -->
+            <!-- ================================= -->
+            <div class="wizard-indicator">
+                <div class="wizard-step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <span class="step-label">대상 선택</span>
+                </div>
+                <div class="step-connector" id="conn-1-2"></div>
+                <div class="wizard-step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <span class="step-label">메시지 작성</span>
+                </div>
+                <div class="step-connector" id="conn-2-3"></div>
+                <div class="wizard-step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <span class="step-label">최종 확인</span>
+                </div>
+            </div>
+
+            <!-- ================================= -->
+            <!-- 위자드 본문 영역                     -->
+            <!-- ================================= -->
+            <div class="wizard-body">
+
+                <!-- ============================== -->
+                <!-- Step 1: 발송 주체 및 대상 선택    -->
+                <!-- ============================== -->
+                <div class="wizard-panel active" id="panel-1">
+
+                    <!-- 설계사 셀렉터 -->
+                    <div class="section-title">
+                        <i class="ph-fill ph-identification-badge"></i>
+                        설계사 선택
+                    </div>
+                    <div class="multi-select-wrapper">
+                        <div class="select-all-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggle-all-planners">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>관리 중인 전체 설계사 선택</span>
+                        </div>
+                        <div class="search-input-wrap">
+                            <i class="ph ph-magnifying-glass"></i>
+                            <input type="text" id="planner-search" placeholder="설계사 이름 또는 사번으로 검색...">
+                        </div>
+                        <div class="selected-tags" id="selected-planner-tags">
+                            <!-- 선택된 태그가 여기 렌더링 -->
+                        </div>
+                        <div class="planner-dropdown" id="planner-dropdown">
+                            <!-- 설계사 목록이 여기 렌더링 -->
+                        </div>
+                    </div>
+
+                    <!-- 고객 필터 -->
+                    <div class="section-title" style="margin-top: 8px;">
+                        <i class="ph-fill ph-users-three"></i>
+                        발송 대상 고객
+                    </div>
+                    <div class="customer-section">
+                        <div class="filter-chips" id="customer-filters">
+                            <span class="filter-chip active" data-filter="all">전체</span>
+                            <span class="filter-chip" data-filter="active">활성 고객</span>
+                        </div>
+                        <div id="customer-area">
+                            <!-- 고객 리스트 또는 empty state -->
+                            <div class="empty-state" id="empty-customer">
+                                <i class="ph ph-user-list"></i>
+                                <p>먼저 설계사를 선택해주세요</p>
+                            </div>
+                            <div class="customer-grid" id="customer-grid" style="display:none;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 셀렉션 서머리 -->
+                    <div class="selection-summary" id="selection-summary" style="display:none;">
+                        <span>📋 현재 선택된 발송 대상</span>
+                        <div class="summary-count">
+                            <span>설계사 <span class="count-badge" id="summary-planner-count">0</span>명</span>
+                            <span>고객 <span class="count-badge" id="summary-customer-count">0</span>명</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- Step 2: 콘텐츠 + 메시지 편집      -->
+                <!-- ============================== -->
+                <div class="wizard-panel" id="panel-2">
+                    <div class="editor-layout">
+
+                        <!-- 좌측: 스마트 편집기 -->
+                        <div class="editor-panel">
+                            <div class="section-title">
+                                <i class="ph-fill ph-pencil-line"></i>
+                                메시지 편집
+                            </div>
+
+                            <div class="template-select-btn" id="btn-open-template">
+                                <i class="ph ph-folder-open"></i>
+                                라이브러리에서 템플릿 선택
+                            </div>
+
+                            <div class="var-toolbar">
+                                <button type="button" class="var-btn" data-var="{고객명}">{고객명}</button>
+                                <button type="button" class="var-btn" data-var="{설계사명}">{설계사명}</button>
+                                <button type="button" class="var-btn" data-var="{설계사연락처}">{설계사연락처}</button>
+                            </div>
+
+                            <textarea class="message-textarea" id="message-text" placeholder="메시지를 입력하세요...&#10;&#10;치환 변수는 상단 버튼을 클릭하여 삽입할 수 있습니다."></textarea>
+                            <div class="char-count"><span id="char-count-val">0</span> / 1000자</div>
+                        </div>
+
+                        <!-- 우측: 카카오톡 시뮬레이터 -->
+                        <div class="simulator-panel">
+                            <div class="section-title">
+                                <i class="ph-fill ph-device-mobile"></i>
+                                카카오톡 미리보기
+                            </div>
+                            <div class="phone-frame">
+                                <div class="phone-notch"></div>
+                                <div class="kakao-header">
+                                    <i class="ph ph-caret-left"></i>
+                                    <span>카카오톡</span>
+                                </div>
+                                <div class="kakao-body" id="kakao-preview">
+                                    <div class="chat-date"><span>오늘</span></div>
+                                    <!-- 말풍선이 여기 동적으로 렌더링 -->
+                                    <div class="chat-bubble-right" id="preview-bubble" style="display:none;">
+                                        <span class="bubble-time" id="preview-time"></span>
+                                        <div class="bubble" id="preview-text"></div>
+                                    </div>
+                                </div>
+                                <div class="kakao-footer">
+                                    <div class="input-mock">메시지 입력</div>
+                                    <div class="send-icon"><i class="ph-fill ph-paper-plane-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- Step 3: 최종 검수 및 발송 설정     -->
+                <!-- ============================== -->
+                <div class="wizard-panel" id="panel-3">
+                    <div class="review-layout">
+
+                        <!-- 좌측: 실제 데이터 프리뷰 -->
+                        <div class="review-card">
+                            <div class="review-card-title">
+                                <i class="ph-fill ph-eye"></i>
+                                실제 데이터 프리뷰
+                            </div>
+                            <p style="font-size:13px; color: var(--text-muted); margin-bottom:12px;">
+                                아래는 첫 번째 고객 기준 실제 치환된 메시지 샘플입니다.
+                            </p>
+                            <div class="preview-message" id="preview-real-message">
+                                메시지를 먼저 작성해주세요.
+                            </div>
+
+                            <!-- 발송 요약 카드 -->
+                            <div style="margin-top: 20px; padding: 16px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border-color);">
+                                <div style="display: flex; gap: 24px; font-size: 14px;">
+                                    <span>📤 총 발송 대상: <strong id="review-total-count">0</strong>명</span>
+                                    <span>👤 설계사: <strong id="review-planner-count">0</strong>명</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 우측: 발송 옵션 및 최종 액션 -->
+                        <div class="review-card">
+                            <div class="review-card-title">
+                                <i class="ph-fill ph-gear-six"></i>
+                                발송 옵션
+                            </div>
+
+                            <div class="send-options">
+                                <label class="option-radio selected" id="opt-immediate">
+                                    <input type="radio" name="send-type" value="IMMEDIATE" checked>
+                                    <div class="radio-dot"></div>
+                                    <div>
+                                        <div class="option-label">⚡ 즉시 발송</div>
+                                        <div class="option-desc">현재 시각 즉시 발송 큐에 삽입</div>
+                                    </div>
+                                </label>
+                                <label class="option-radio" id="opt-scheduled">
+                                    <input type="radio" name="send-type" value="SCHEDULED">
+                                    <div class="radio-dot"></div>
+                                    <div>
+                                        <div class="option-label">📅 예약 발송</div>
+                                        <div class="option-desc">날짜 및 시간을 지정하여 발송</div>
+                                    </div>
+                                </label>
+                                <div class="datetime-picker" id="datetime-picker">
+                                    <input type="datetime-local" id="scheduled-datetime">
+                                </div>
+                            </div>
+
+                            <div class="final-actions">
+                                <button type="button" class="btn-test" id="btn-test-send">
+                                    <i class="ph ph-paper-plane"></i>
+                                    나에게 테스트 전송
+                                </button>
+                                <button type="button" class="btn-send-final" id="btn-bulk-send">
+                                    <i class="ph-fill ph-paper-plane-tilt"></i>
+                                    대량 대행 발송 시작
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ================================= -->
+            <!-- 하단 액션바 (고정)                   -->
+            <!-- ================================= -->
+            <div class="wizard-actions">
+                <button type="button" class="btn btn-prev" id="btn-wizard-prev" style="visibility:hidden;">
+                    <i class="ph ph-caret-left"></i> 이전
+                </button>
+                <button type="button" class="btn btn-next" id="btn-wizard-next">
+                    다음 단계 <i class="ph ph-caret-right"></i>
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 보험 마케팅 관리자. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 모달: 템플릿 선택                            -->
+    <!-- ========================================== -->
+    <div class="modal-overlay" id="template-modal" style="display:none;">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3><i class="ph ph-folder-open"></i> 메시지 라이브러리</h3>
+                <button type="button" class="modal-close" id="btn-template-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="template-list" id="template-list">
+                    <!-- 템플릿 목록 동적 렌더링 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 모달: 발송 확인 컨펌                         -->
+    <!-- ========================================== -->
+    <div class="confirm-overlay" id="confirm-modal" style="display:none;">
+        <div class="confirm-box">
+            <div class="confirm-icon"><i class="ph-fill ph-paper-plane-tilt"></i></div>
+            <h3>대량 대행 발송을 시작하시겠습니까?</h3>
+            <p id="confirm-msg">총 <strong id="confirm-count">0</strong>명에게 카카오톡 메시지를 전송합니다.<br>발송 후에는 취소할 수 없습니다.</p>
+            <div class="confirm-actions">
+                <button type="button" class="btn-cancel" id="btn-confirm-cancel">취소</button>
+                <button type="button" class="btn-confirm" id="btn-confirm-send">
+                    <i class="ph-fill ph-check"></i> 발송 시작
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/send.js"></script>
+</body>
+</html>

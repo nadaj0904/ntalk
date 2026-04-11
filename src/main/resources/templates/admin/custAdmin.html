@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"/>
+    <title>데이터 관리 - 보험영업지원 시스템</title>
+
+    <!-- 폰트: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <!-- 아이콘: Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Toast UI Grid -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.min.css" />
+    <script src="https://uicdn.toast.com/grid/latest/tui-grid.min.js"></script>
+
+    <!-- 공통 + 인덱스 레이아웃 + 페이지 자체 스타일 -->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/custAdmin.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- 좌측 Sidebar (index.html과 동일 구조) -->
+    <!-- ========================================== -->
+    <aside>
+        <div class="logo-area">
+            <i class="ph-fill ph-shield-check" style="color: var(--primary-color);"></i>
+            <span style="margin-left: 10px;">보험영업지원</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="/index" class="nav-item">
+                <i class="ph ph-squares-four"></i>
+                메인 대시보드 (Home)
+            </a>
+            <a href="/send" class="nav-item">
+                <i class="ph ph-paper-plane-tilt"></i>
+                바로 발송
+            </a>
+            <a href="/admin/custAdmin" class="nav-item active">
+                <i class="ph ph-database"></i>
+                데이터 관리
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/admin/settings" class="admin-settings">
+                <i class="ph ph-gear"></i>
+                관리자 설정
+            </a>
+        </div>
+    </aside>
+
+    <!-- ========================================== -->
+    <!-- 우측 메인 래퍼 -->
+    <!-- ========================================== -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <header>
+            <div class="header-left">
+                <span>데이터 관리 - 설계사/고객 매핑</span>
+            </div>
+            <div class="header-right">
+                <div class="timer-wrapper" title="남은 세션 시간">
+                    <i class="ph ph-clock"></i>
+                    <span class="time-display" id="session-timer">60:00</span>
+                    <button type="button" class="btn-extend" id="btn-extend">연장</button>
+                </div>
+                <div class="user-info">
+                    <div class="avatar" th:text="${user.email != null ? user.email.substring(0,1).toUpperCase() : 'U'}">A</div>
+                    <span th:text="${user.email}">admin@example.com</span>
+                </div>
+                <a href="/logout" class="btn-logout" title="로그아웃">
+                    <i class="ph ph-sign-out"></i>
+                    <span>로그아웃</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="cust-main">
+
+            <!-- ================================= -->
+            <!-- 1. 상단 액션바 (Action Bar) -->
+            <!-- ================================= -->
+            <section class="action-bar">
+                <div class="action-left">
+                    <i class="ph-fill ph-users-three"></i>
+                    <span>전체 고객: <strong id="total-count">0</strong>명</span>
+                </div>
+                <div class="action-right">
+                    <button type="button" class="btn btn-primary" id="btn-upload">
+                        <i class="ph ph-file-arrow-up"></i> 엑셀 업로드
+                    </button>
+                    <button type="button" class="btn btn-outline" id="btn-download">
+                        <i class="ph ph-file-arrow-down"></i> 엑셀 다운로드
+                    </button>
+                    <button type="button" class="btn btn-success" id="btn-add">
+                        <i class="ph ph-user-plus"></i> 개별 추가
+                    </button>
+                    <button type="button" class="btn btn-danger" id="btn-delete" disabled>
+                        <i class="ph ph-trash"></i> 선택 삭제
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================================= -->
+            <!-- 2. 검색 및 필터링 영역 -->
+            <!-- ================================= -->
+            <section class="filter-pane">
+                <div class="search-box">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="search-keyword" placeholder="설계사명, 고객명, 휴대폰 검색..." />
+                </div>
+                <div class="filter-group">
+                    <select id="filter-planner">
+                        <option value="">전체 설계사</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">전체 상태</option>
+                        <option value="active">활성</option>
+                        <option value="inactive">비활성</option>
+                    </select>
+                    <button type="button" class="btn btn-sm" id="btn-search">
+                        <i class="ph ph-funnel"></i> 조회
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================================= -->
+            <!-- 3. 데이터 그리드 영역 -->
+            <!-- ================================= -->
+            <section class="grid-wrapper">
+                <div id="grid"></div>
+            </section>
+
+            <!-- ================================= -->
+            <!-- 4. 페이징 -->
+            <!-- ================================= -->
+            <section class="paging-area">
+                <div id="paging"></div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 보험 마케팅 관리자. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 모달: 엑셀 일괄 업로드 -->
+    <!-- ========================================== -->
+    <div class="modal-overlay" id="upload-modal" style="display: none;">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3><i class="ph ph-file-xls"></i> 엑셀 일괄 업로드</h3>
+                <button type="button" class="modal-close" id="btn-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Step 1: 양식 안내 -->
+                <div class="upload-step" id="step-1">
+                    <div class="step-info">
+                        <span class="step-badge">STEP 1</span>
+                        <p>표준 엑셀 양식을 다운받아 데이터를 작성해 주세요.</p>
+                    </div>
+                    <button type="button" class="btn btn-outline btn-sm" id="btn-template-download">
+                        <i class="ph ph-download-simple"></i> 표준 양식 다운로드 (.xlsx)
+                    </button>
+                </div>
+
+                <!-- Step 2: 파일 드래그 앤 드롭 -->
+                <div class="upload-step" id="step-2">
+                    <div class="step-info">
+                        <span class="step-badge">STEP 2</span>
+                        <p>작성한 엑셀 파일을 아래 영역에 드래그하거나 클릭하여 업로드하세요.</p>
+                    </div>
+                    <div class="drop-zone" id="drop-zone">
+                        <i class="ph ph-cloud-arrow-up"></i>
+                        <p>파일을 여기에 드래그하거나 <strong>클릭</strong>하여 선택</p>
+                        <span class="file-name" id="file-name"></span>
+                        <input type="file" id="file-input" accept=".xlsx,.xls" style="display: none;" />
+                    </div>
+                </div>
+
+                <!-- Step 3: 프리뷰 결과 -->
+                <div class="upload-step" id="step-3" style="display: none;">
+                    <div class="step-info">
+                        <span class="step-badge">STEP 3</span>
+                        <p>파싱 결과를 확인 후 [최종 등록] 버튼을 눌러주세요. <strong>덮어쓰기 정책</strong>이 적용됩니다.</p>
+                    </div>
+                    <div class="preview-stats">
+                        <span class="stat-valid"><i class="ph ph-check-circle"></i> 정상: <strong id="preview-valid">0</strong>건</span>
+                        <span class="stat-error"><i class="ph ph-warning-circle"></i> 오류: <strong id="preview-error">0</strong>건</span>
+                    </div>
+                    <div id="preview-grid"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="btn-modal-cancel">취소</button>
+                <button type="button" class="btn btn-primary" id="btn-parse" style="display: none;">
+                    <i class="ph ph-magnifying-glass-plus"></i> 데이터 검증
+                </button>
+                <button type="button" class="btn btn-primary" id="btn-import" style="display: none;">
+                    <i class="ph ph-database"></i> 최종 등록 (덮어쓰기)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 모달: 개별 고객 추가 -->
+    <!-- ========================================== -->
+    <div class="modal-overlay" id="add-modal" style="display: none;">
+        <div class="modal-container modal-sm">
+            <div class="modal-header">
+                <h3><i class="ph ph-user-plus"></i> 고객 추가</h3>
+                <button type="button" class="modal-close" id="btn-add-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="add-planner">담당 설계사</label>
+                    <select id="add-planner" class="form-control">
+                        <option value="">설계사 선택</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="add-name">고객명</label>
+                    <input type="text" id="add-name" class="form-control" placeholder="홍길동" />
+                </div>
+                <div class="form-group">
+                    <label for="add-mobile">휴대폰 번호</label>
+                    <input type="text" id="add-mobile" class="form-control" placeholder="010-0000-0000" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="btn-add-cancel">취소</button>
+                <button type="button" class="btn btn-success" id="btn-add-save">
+                    <i class="ph ph-check"></i> 등록
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 공통 스크립트 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/custAdmin.js"></script>
+</body>
+</html>

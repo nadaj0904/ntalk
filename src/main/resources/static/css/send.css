@@ -1,0 +1,986 @@
+/* =============================================== */
+/* send.css - 바로 발송 위자드 전용 스타일            */
+/* =============================================== */
+
+/* Main 오버라이드 */
+.send-main {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ========================================== */
+/* 1. 위자드 스텝 인디케이터                     */
+/* ========================================== */
+.wizard-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 32px 20px;
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  gap: 0;
+}
+
+.wizard-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px solid #cbd5e1;
+  color: #94a3b8;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.step-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #94a3b8;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.wizard-step.active .step-circle {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(59,130,246,0.35);
+}
+.wizard-step.active .step-label {
+  color: var(--text-main);
+}
+
+.wizard-step.done .step-circle {
+  background: #10b981;
+  color: #fff;
+  border-color: #10b981;
+}
+.wizard-step.done .step-label {
+  color: #10b981;
+}
+
+.step-connector {
+  width: 60px;
+  height: 2px;
+  background: #cbd5e1;
+  margin: 0 16px;
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+.step-connector.done {
+  background: #10b981;
+}
+
+/* ========================================== */
+/* 2. 위자드 본문                               */
+/* ========================================== */
+.wizard-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+}
+
+.wizard-panel {
+  display: none;
+  animation: fadeSlide 0.35s ease;
+}
+.wizard-panel.active {
+  display: block;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================== */
+/* 3. 하단 액션바 (고정)                         */
+/* ========================================== */
+.wizard-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: #fff;
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.03);
+}
+
+.wizard-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Pretendard', sans-serif;
+}
+.wizard-actions .btn i { font-size: 18px; }
+
+.btn-prev {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color) !important;
+}
+.btn-prev:hover { background: #e2e8f0; }
+
+.btn-next {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+}
+.btn-next:hover {
+  box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+  transform: translateY(-1px);
+}
+
+/* ========================================== */
+/* 4. Step 1: 설계사/고객 선택                   */
+/* ========================================== */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+.section-title i {
+  font-size: 22px;
+  color: var(--primary-color);
+}
+
+/* 멀티셀렉트 */
+.multi-select-wrapper {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.select-all-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #cbd5e1;
+  border-radius: 22px;
+  transition: 0.3s;
+}
+.toggle-slider:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.toggle-switch input:checked + .toggle-slider { background: var(--primary-color); }
+.toggle-switch input:checked + .toggle-slider:before { transform: translateX(18px); }
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+.search-input-wrap i { color: var(--text-muted); font-size: 18px; margin-right: 8px; }
+.search-input-wrap input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  font-family: 'Pretendard', sans-serif;
+  color: var(--text-main);
+}
+
+/* 선택된 태그 */
+.selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  min-height: 36px;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #eff6ff;
+  color: var(--primary-color);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  animation: chipIn 0.2s ease;
+}
+.tag-chip .remove-tag {
+  cursor: pointer;
+  font-size: 16px;
+  color: #93c5fd;
+  transition: color 0.2s;
+}
+.tag-chip .remove-tag:hover { color: var(--danger-color); }
+
+@keyframes chipIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 설계사 드롭다운 목록 */
+.planner-dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+.planner-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+.planner-option:last-child { border-bottom: none; }
+.planner-option:hover { background: #f8fafc; }
+.planner-option.selected { background: #eff6ff; }
+.planner-option .planner-check {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 12px;
+  color: transparent;
+}
+.planner-option.selected .planner-check {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+/* 고객 리스트 */
+.customer-section {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+.filter-chips {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.filter-chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+.filter-chip.active {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+.filter-chip:hover:not(.active) { border-color: var(--primary-color); color: var(--primary-color); }
+
+.customer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.customer-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: default;
+  transition: all 0.15s;
+  font-size: 13.5px;
+}
+.customer-card .avatar-sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4f46e5;
+  flex-shrink: 0;
+}
+.customer-card .cust-info { flex: 1; min-width: 0; }
+.customer-card .cust-name { font-weight: 600; color: var(--text-main); }
+.customer-card .cust-planner { font-size: 12px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 빈 상태 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.empty-state i { font-size: 52px; color: #cbd5e1; margin-bottom: 16px; }
+.empty-state p { font-size: 15px; font-weight: 500; }
+
+/* 셀렉션 서머리 */
+.selection-summary {
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(135deg, #1e293b, #334155);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.selection-summary .summary-count {
+  display: flex;
+  gap: 20px;
+}
+.selection-summary .count-badge {
+  background: rgba(255,255,255,0.15);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+/* ========================================== */
+/* 5. Step 2: 메시지 편집 + 카톡 시뮬레이터       */
+/* ========================================== */
+.editor-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  min-height: 500px;
+}
+
+/* 좌측 편집기 */
+.editor-panel {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-select-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #f8fafc;
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-bottom: 16px;
+}
+.template-select-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: #eff6ff;
+}
+.template-select-btn i { font-size: 20px; }
+
+.var-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.var-btn {
+  padding: 5px 12px;
+  background: #E3F2FD;
+  border: none;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1565C0;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Pretendard', sans-serif;
+}
+.var-btn:hover { background: #BBDEFB; }
+
+.message-textarea {
+  flex: 1;
+  min-height: 260px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 14px;
+  font-family: 'Pretendard', sans-serif;
+  line-height: 1.7;
+  resize: none;
+  color: var(--text-main);
+  transition: border-color 0.2s;
+}
+.message-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding-top: 6px;
+}
+
+/* 우측 카카오톡 시뮬레이터 */
+.simulator-panel {
+  position: sticky;
+  top: 0;
+}
+
+.phone-frame {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+  border: 8px solid #1e1e1e;
+}
+
+/* 아이폰 상단 노치 */
+.phone-notch {
+  height: 32px;
+  background: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.phone-notch::after {
+  content: '';
+  width: 80px;
+  height: 20px;
+  background: #000;
+  border-radius: 0 0 16px 16px;
+  position: absolute;
+  top: 0;
+}
+
+/* 카카오톡 헤더 */
+.kakao-header {
+  background: #A8D8EA;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+}
+.kakao-header i { font-size: 20px; }
+
+/* 카톡 채팅 영역 */
+.kakao-body {
+  background: #A8D8EA;
+  min-height: 420px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 날짜 구분선 */
+.chat-date {
+  text-align: center;
+  font-size: 11px;
+  color: #5a7d8f;
+  padding: 6px 0;
+}
+.chat-date span {
+  background: rgba(0,0,0,0.08);
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+/* 카톡 말풍선 - 보낸 메시지 (오른쪽) */
+.chat-bubble-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 6px;
+}
+.chat-bubble-right .bubble {
+  max-width: 240px;
+  background: #FEE500;
+  padding: 10px 14px;
+  border-radius: 14px 14px 4px 14px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #333;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.chat-bubble-right .bubble-time {
+  font-size: 10px;
+  color: #5a7d8f;
+  flex-shrink: 0;
+}
+
+/* 카톡 이미지 카드 */
+.chat-bubble-right .bubble-image {
+  max-width: 240px;
+  border-radius: 14px 14px 4px 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.chat-bubble-right .bubble-image img {
+  width: 100%;
+  display: block;
+}
+
+/* 카톡 하단 입력바 */
+.kakao-footer {
+  background: #fff;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+.kakao-footer .input-mock {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #999;
+}
+.kakao-footer .send-icon {
+  width: 32px;
+  height: 32px;
+  background: #FEE500;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #333;
+}
+
+/* ========================================== */
+/* 6. Step 3: 최종 검수 및 발송                  */
+/* ========================================== */
+.review-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.review-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.review-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.review-card-title i { color: var(--primary-color); font-size: 20px; }
+
+.preview-message {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  color: var(--text-main);
+}
+
+.preview-highlight {
+  background: #fef3c7;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #92400e;
+}
+
+/* 발송 옵션 */
+.send-options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.option-radio {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.option-radio:hover { border-color: #93c5fd; }
+.option-radio.selected {
+  border-color: var(--primary-color);
+  background: #eff6ff;
+}
+.option-radio input[type="radio"] { display: none; }
+.radio-dot {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.radio-dot::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.option-radio.selected .radio-dot {
+  border-color: var(--primary-color);
+}
+.option-radio.selected .radio-dot::after { opacity: 1; }
+
+.option-label { font-weight: 600; font-size: 14px; }
+.option-desc { font-size: 12.5px; color: var(--text-muted); }
+
+.datetime-picker {
+  display: none;
+  padding: 12px 0 0;
+}
+.datetime-picker.show { display: block; }
+.datetime-picker input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Pretendard', sans-serif;
+}
+.datetime-picker input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* 최종 액션 버튼 */
+.final-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn-test {
+  flex: 1;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Pretendard', sans-serif;
+}
+.btn-test:hover { background: #e2e8f0; }
+.btn-test i { font-size: 18px; }
+
+.btn-send-final {
+  flex: 2;
+  padding: 12px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Pretendard', sans-serif;
+  box-shadow: 0 4px 14px rgba(59,130,246,0.35);
+}
+.btn-send-final:hover {
+  box-shadow: 0 6px 20px rgba(59,130,246,0.45);
+  transform: translateY(-1px);
+}
+.btn-send-final i { font-size: 20px; }
+
+/* ========================================== */
+/* 7. 템플릿 선택 모달                           */
+/* ========================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+.modal-container {
+  background: #fff;
+  border-radius: 14px;
+  width: 640px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  animation: modalSlideUp 0.25s ease;
+}
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+.modal-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.modal-header h3 i { font-size: 22px; color: var(--primary-color); }
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.template-item {
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.template-item:hover {
+  border-color: var(--primary-color);
+  background: #eff6ff;
+}
+.template-item .tpl-title {
+  font-weight: 600;
+  font-size: 14.5px;
+  margin-bottom: 4px;
+}
+.template-item .tpl-category {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.template-item .tpl-preview {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin-top: 8px;
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 컨펌 모달 */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.confirm-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 420px;
+  text-align: center;
+  animation: modalSlideUp 0.25s ease;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+.confirm-box .confirm-icon {
+  font-size: 48px;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+.confirm-box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.confirm-box p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.confirm-box .confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+.confirm-box .btn-cancel {
+  flex: 1;
+  padding: 12px;
+  background: #f1f5f9;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Pretendard', sans-serif;
+}
+.confirm-box .btn-confirm {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Pretendard', sans-serif;
+  box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+}
+
+/* ========================================== */
+/* 8. 반응형                                   */
+/* ========================================== */
+@media (max-width: 1100px) {
+  .editor-layout { grid-template-columns: 1fr; }
+  .simulator-panel { position: static; }
+  .phone-frame { max-width: 340px; margin: 0 auto; }
+  .review-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .wizard-indicator { padding: 16px 20px; }
+  .step-label { display: none; }
+  .step-connector { width: 30px; margin: 0 8px; }
+  .wizard-body { padding: 16px 20px; }
+  .wizard-actions { padding: 12px 20px; }
+  .customer-grid { grid-template-columns: 1fr; }
+  .confirm-box { width: 90vw; }
+  .modal-container { width: 95vw; }
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntalk.choi.repository.SendMapper">
+
+    <select id="selectPlannerListForSend" resultType="com.ntalk.choi.domain.CustomerDTO">
+        SELECT planner_id, name AS planner_name, planner_code
+        FROM TB_NTALK_USER_PLANNER
+        WHERE deleted_at IS NULL
+        ORDER BY name ASC
+    </select>
+
+    <select id="selectActiveCustomersByPlannerIds" resultType="com.ntalk.choi.domain.CustomerDTO">
+        SELECT c.customer_id, c.planner_id, c.name, c.mobile, p.name AS planner_name, p.planner_code
+        FROM TB_NTALK_USER_CUSTOMER c
+        JOIN TB_NTALK_USER_PLANNER p ON c.planner_id = p.planner_id
+        WHERE c.planner_id IN
+        <foreach item="item" collection="plannerIds" open="(" separator="," close=")">#{item}</foreach>
+          AND c.is_active = true AND c.deleted_at IS NULL
+        ORDER BY c.name ASC
+    </select>
+
+    <select id="selectActiveCustomerCountByPlannerIds" resultType="int">
+        SELECT COUNT(*) FROM TB_NTALK_USER_CUSTOMER
+        WHERE planner_id IN
+        <foreach item="item" collection="plannerIds" open="(" separator="," close=")">#{item}</foreach>
+          AND is_active = true AND deleted_at IS NULL
+    </select>
+
+    <select id="selectTemplateList" resultType="com.ntalk.choi.domain.SendTemplateDTO">
+        SELECT template_id, title, content_text, image_url, category
+        FROM TB_NTALK_SEND_TEMPLATE
+        WHERE is_active = true AND deleted_at IS NULL
+        ORDER BY template_id DESC
+    </select>
+
+    <select id="selectTemplateById" resultType="com.ntalk.choi.domain.SendTemplateDTO">
+        SELECT template_id, title, content_text, image_url, category
+        FROM TB_NTALK_SEND_TEMPLATE
+        WHERE template_id = #{templateId} AND deleted_at IS NULL
+    </select>
+
+    <insert id="insertSendQueueBatch" parameterType="java.util.List">
+        INSERT INTO TB_NTALK_SEND_QUEUE (customer_id, planner_id, template_id, message_text, image_url, send_type, scheduled_at, status, created_id, created_at)
+        VALUES
+        <foreach collection="list" item="i" separator=",">
+        (#{i.customerId}, #{i.plannerId}, #{i.templateId}, #{i.messageText}, #{i.imageUrl}, #{i.sendType}, #{i.scheduledAt}, 'PENDING', #{i.createdId}, CURRENT_TIMESTAMP)
+        </foreach>
+    </insert>
+</mapper>

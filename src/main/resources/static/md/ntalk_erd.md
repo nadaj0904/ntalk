@@ -1,0 +1,106 @@
+-- =========================================================================
+-- = ntalk DB 스키마 설계 및 생성 (PostgreSQL)
+-- =========================================================================
+
+-- USER_ 사용자 계정 (Auth)
+CREATE TABLE TB_NTALK_USER_ACCOUNT (
+    account_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role_type VARCHAR(20) CHECK (role_type IN ('ADMIN', 'STAFF', 'PLANNER')),
+    last_login_at TIMESTAMP,
+    created_id VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_id VARCHAR(50),
+    updated_at TIMESTAMP,
+    deleted_id VARCHAR(50),
+    deleted_at TIMESTAMP
+);
+
+COMMENT ON TABLE TB_NTALK_USER_ACCOUNT IS '사용자 계정 (Auth)';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.account_id IS '계정 구분 ID (UUID)';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.email IS '이메일(로그인 ID)';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.password_hash IS '비밀번호 해시';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.role_type IS '권한 (ADMIN, STAFF, PLANNER)';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.last_login_at IS '최종 로그인 일시';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.created_id IS '생성자 ID';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.created_at IS '생성일시';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.updated_id IS '수정자 ID';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.updated_at IS '수정일시';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.deleted_id IS '삭제자 ID';
+COMMENT ON COLUMN TB_NTALK_USER_ACCOUNT.deleted_at IS '삭제일시';
+
+-- USER_ 스텝 프로필 (관리 주체)
+CREATE TABLE TB_NTALK_USER_STAFF (
+    staff_id UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    department_name VARCHAR(100),
+    created_id VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_id VARCHAR(50),
+    updated_at TIMESTAMP,
+    deleted_id VARCHAR(50),
+    deleted_at TIMESTAMP,
+    CONSTRAINT FK_NTALK_USER_STAFF_ACCOUNT FOREIGN KEY (staff_id) REFERENCES TB_NTALK_USER_ACCOUNT(account_id) ON DELETE CASCADE
+);
+
+COMMENT ON TABLE TB_NTALK_USER_STAFF IS '스텝 관리 주체 프로필';
+COMMENT ON COLUMN TB_NTALK_USER_STAFF.staff_id IS '스텝 고유번호 (account_id 참조)';
+COMMENT ON COLUMN TB_NTALK_USER_STAFF.name IS '스텝명';
+COMMENT ON COLUMN TB_NTALK_USER_STAFF.department_name IS '소속 부서';
+
+-- 설계사 시퀀스
+CREATE SEQUENCE SEQ_NTALK_USER_PLANNER START 1 INCREMENT 1;
+
+-- USER_ 설계사 정보 (스텝과 N:1 관계)
+CREATE TABLE TB_NTALK_USER_PLANNER (
+    planner_id INTEGER PRIMARY KEY DEFAULT nextval('SEQ_NTALK_USER_PLANNER'),
+    staff_id UUID,
+    name VARCHAR(100) NOT NULL,
+    planner_code VARCHAR(50) UNIQUE,
+    kakao_sender_key VARCHAR(100),
+    created_id VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_id VARCHAR(50),
+    updated_at TIMESTAMP,
+    deleted_id VARCHAR(50),
+    deleted_at TIMESTAMP,
+    CONSTRAINT FK_NTALK_USER_PLANNER_STAFF FOREIGN KEY (staff_id) REFERENCES TB_NTALK_USER_STAFF(staff_id) ON DELETE SET NULL
+);
+
+CREATE INDEX IDX_NTALK_USER_PLANNER_STAFF ON TB_NTALK_USER_PLANNER(staff_id);
+
+COMMENT ON TABLE TB_NTALK_USER_PLANNER IS '설계사 정보';
+COMMENT ON COLUMN TB_NTALK_USER_PLANNER.planner_id IS '설계사 고유번호';
+COMMENT ON COLUMN TB_NTALK_USER_PLANNER.staff_id IS '관리 담당 스텝 ID';
+COMMENT ON COLUMN TB_NTALK_USER_PLANNER.name IS '설계사 이름';
+COMMENT ON COLUMN TB_NTALK_USER_PLANNER.planner_code IS '사번/식별코드';
+COMMENT ON COLUMN TB_NTALK_USER_PLANNER.kakao_sender_key IS '알림톡 발송용 엠엔와이즈 센더 키';
+
+-- 고객 시퀀스
+CREATE SEQUENCE SEQ_NTALK_USER_CUSTOMER START 1 INCREMENT 1;
+
+-- USER_ 고객 정보 (설계사와 N:1 관계)
+CREATE TABLE TB_NTALK_USER_CUSTOMER (
+    customer_id INTEGER PRIMARY KEY DEFAULT nextval('SEQ_NTALK_USER_CUSTOMER'),
+    planner_id INTEGER NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    mobile VARCHAR(20) NOT NULL,
+    is_active BOOLEAN DEFAULT true,
+    created_id VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_id VARCHAR(50),
+    updated_at TIMESTAMP,
+    deleted_id VARCHAR(50),
+    deleted_at TIMESTAMP,
+    CONSTRAINT FK_NTALK_USER_CUSTOMER_PLANNER FOREIGN KEY (planner_id) REFERENCES TB_NTALK_USER_PLANNER(planner_id) ON DELETE CASCADE
+);
+
+CREATE INDEX IDX_NTALK_USER_CUSTOMER_PLANNER ON TB_NTALK_USER_CUSTOMER(planner_id);
+
+COMMENT ON TABLE TB_NTALK_USER_CUSTOMER IS '고객 정보';
+COMMENT ON COLUMN TB_NTALK_USER_CUSTOMER.customer_id IS '고객 고유번호';
+COMMENT ON COLUMN TB_NTALK_USER_CUSTOMER.planner_id IS '담당 설계사 고유번호';
+COMMENT ON COLUMN TB_NTALK_USER_CUSTOMER.name IS '고객 이름';
+COMMENT ON COLUMN TB_NTALK_USER_CUSTOMER.mobile IS '고객 연락처';
+COMMENT ON COLUMN TB_NTALK_USER_CUSTOMER.is_active IS '정상(활성) 고객 여부';

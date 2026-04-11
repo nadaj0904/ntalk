@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- application.properties/yml 에 설정된 프로퍼티 로드 -->
+    <springProperty scope="context" name="LOG_PATH" source="logging.file.path" defaultValue="./logs" />
+
+    <!-- ========================================== -->
+    <!-- 1. 가독성 패턴 설정 -->
+    <!-- 날짜, 시간, 로그 레벨, PID, Thread명, Class명, 메시지 -->
+    <!-- ========================================== -->
+    <property name="CONSOLE_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta(${PID:-}) --- [%15.15thread] %cyan(%-40.40logger{39}) : %msg%n"/>
+    <property name="FILE_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:-} --- [%thread] %logger{39} : %msg%n"/>
+
+    <!-- ========================================== -->
+    <!-- 2. Console Appender (콘솔에 컬러 로그 출력) -->
+    <!-- ========================================== -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ========================================== -->
+    <!-- 3. File Appender (INFO 레벨 이상의 전체 로그) -->
+    <!-- 최대 30일 보관, 일 단위 롤링 -->
+    <!-- ========================================== -->
+    <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/ntalk-business.log</file>
+        <!-- INFO 레벨 이상만 기록 (TRACE, DEBUG 제외) -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>${FILE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- archived 디렉토리에 일자별 보관 -->
+            <fileNamePattern>${LOG_PATH}/archived/ntalk-business-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 30일 보관 후 자동 삭제 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- ========================================== -->
+    <!-- 4. File Appender (ERROR 레벨 전용 로그 파일 분리) -->
+    <!-- ========================================== -->
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/ntalk-error.log</file>
+        <!-- ERROR 레벨만 기록 (정확히 매치될 때만 ACCEPT) -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${FILE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/archived/ntalk-error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- ========================================== -->
+    <!-- 5. 패키지별 로깅 레벨 제어 -->
+    <!-- ========================================== -->
+    <!-- MyBatis SQL 로그 (Mapper 인터페이스가 위치한 패키지) -->
+    <logger name="com.ntalk.choi.repository" level="DEBUG" />
+    
+    <!-- 비즈니스 로직(Service, Controller) 처리 단계 추적용 -->
+    <logger name="com.ntalk.choi.service" level="DEBUG" />
+    <logger name="com.ntalk.choi.controller" level="DEBUG" />
+
+    <!-- 그 외 전체 프로젝트 기본 로깅 레벨 -->
+    <logger name="com.ntalk.choi" level="INFO" />
+
+    <!-- ========================================== -->
+    <!-- 6. 환경별 프로파일 매핑 -->
+    <!-- ========================================== -->
+    
+    <!-- Local 환경: 개발 및 디버깅 용이성을 위해 콘솔만 사용 -->
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+
+    <!-- Prod 환경: 콘솔 출력 유지(또는 제거 가능) 및 파일 저장에 집중 -->
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" /> 
+            <appender-ref ref="FILE_INFO" />
+            <appender-ref ref="FILE_ERROR" />
+        </root>
+    </springProfile>
+
+    <!-- 미지정 default -->
+    <springProfile name="!local &amp; !prod">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE_INFO" />
+            <appender-ref ref="FILE_ERROR" />
+        </root>
+    </springProfile>
+
+</configuration>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 대시보드 - 보험영업지원 시스템</title>
+    
+    <!-- 폰트 적용: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    
+    <!-- 아이콘 적용: Phosphor Icons (엔터프라이즈 모던 디자인) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- 스타일 로드 -->
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    
+    <!-- 좌측 Sidebar -->
+    <aside>
+        <!-- 1. Header(상단) 영역의 좌측 (보험사명 등 로고) -->
+        <div class="logo-area">
+            <i class="ph-fill ph-shield-check" style="color: var(--primary-color);"></i>
+            <span style="margin-left: 10px;">보험영업지원</span>
+        </div>
+        
+        <!-- 2. 네비게이션 메뉴 -->
+        <nav class="nav-menu">
+            <a href="/index" class="nav-item active">
+                <i class="ph ph-squares-four"></i>
+                메인 대시보드 (Home)
+            </a>
+            <a href="/send" class="nav-item">
+                <i class="ph ph-paper-plane-tilt"></i>
+                바로 발송
+            </a>
+            <a href="/admin/custAdmin" class="nav-item">
+                <i class="ph ph-database"></i>
+                데이터 관리
+            </a>
+        </nav>
+
+        <!-- 3. 좌측 하단 관리자 설정 -->
+        <div class="sidebar-footer">
+            <a href="/admin/settings" class="admin-settings">
+                <i class="ph ph-gear"></i>
+                관리자 설정
+            </a>
+        </div>
+    </aside>
+
+    <!-- 우측 메인 래퍼 -->
+    <div class="main-wrapper">
+        
+        <!-- 1. 우측 Header -->
+        <header>
+            <div class="header-left">
+                <span>환영합니다! 오늘의 업무를 시작해 보세요.</span>
+            </div>
+            
+            <div class="header-right">
+                <!-- 타이머 영역 (60:00 지원) -->
+                <div class="timer-wrapper" title="남은 세션 시간">
+                    <i class="ph ph-clock"></i>
+                    <span class="time-display" id="session-timer">60:00</span>
+                    <button type="button" class="btn-extend" id="btn-extend">연장</button>
+                </div>
+                
+                <!-- 사용자 정보 -->
+                <div class="user-info">
+                    <div class="avatar">김</div>
+                    <span>김마케터 님</span>
+                </div>
+                
+                <!-- 로그아웃 아이콘 -->
+                <a href="/logout" class="btn-logout" title="로그아웃">
+                    <i class="ph ph-sign-out"></i>
+                    <span>로그아웃</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- 2. 본문 Content 영역 (Main > Section > Article 시맨틱 구조) -->
+        <main>
+            <section class="dashboard-grid">
+                
+                <!-- 대시보드 카드 1 -->
+                <article>
+                    <h3 class="article-title">
+                        <i class="ph-fill ph-chart-line-up"></i>
+                        오늘의 발송 현황
+                    </h3>
+                    <p>당일 진행 중인 메인 워크플로우 발송 진행 건수 및 통계 데이터를 보여주는 영역입니다.</p>
+                </article>
+                
+                <!-- 대시보드 카드 2 -->
+                <article>
+                    <h3 class="article-title">
+                        <i class="ph-fill ph-users-three"></i>
+                        설계사 매핑 데이터
+                    </h3>
+                    <p>최근 매핑된 고객 리스트와 처리해야 할 오류/미배정 리스트를 나타냅니다.</p>
+                </article>
+                
+                <!-- 대시보드 카드 3 -->
+                <article>
+                    <h3 class="article-title">
+                        <i class="ph-fill ph-bell-ringing"></i>
+                        최근 알림 및 공지
+                    </h3>
+                    <p>시스템에 접수된 알림과 관리자 공지사항 내역을 최신순으로 확인합니다.</p>
+                </article>
+                
+            </section>
+        </main>
+        
+        <!-- 3. 푸터 -->
+        <footer>
+            <p>&copy; 2026 보험 마케팅 관리자. All rights reserved.</p>
+        </footer>
+        
+    </div>
+
+    <!-- 스크립트 로드 (Vanilla JS) -->
+    <script src="/js/index.js"></script>
+</body>
+</html>

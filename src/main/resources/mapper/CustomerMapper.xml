@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ntalk.choi.repository.CustomerMapper">
+
+    <!-- ============================================ -->
+    <!-- 공통 WHERE 조건 (검색 + 필터) -->
+    <!-- ============================================ -->
+    <sql id="searchCondition">
+        AND c.deleted_at IS NULL
+        <if test="keyword != null and keyword != ''">
+            AND (
+                c.name ILIKE '%' || #{keyword} || '%'
+                OR c.mobile ILIKE '%' || #{keyword} || '%'
+                OR p.name ILIKE '%' || #{keyword} || '%'
+            )
+        </if>
+        <if test="plannerId != null">
+            AND c.planner_id = #{plannerId}
+        </if>
+        <if test="status != null and status == 'active'">
+            AND c.is_active = true
+        </if>
+        <if test="status != null and status == 'inactive'">
+            AND c.is_active = false
+        </if>
+    </sql>
+
+    <!-- ============================================ -->
+    <!-- 고객 목록 페이징 조회 (설계사 JOIN) -->
+    <!-- ============================================ -->
+    <select id="selectCustomerList" parameterType="com.ntalk.choi.domain.CustomerPageRequest"
+            resultType="com.ntalk.choi.domain.CustomerDTO">
+        SELECT
+            c.customer_id,
+            c.planner_id,
+            c.name,
+            c.mobile,
+            c.is_active,
+            c.created_id,
+            c.created_at,
+            c.updated_id,
+            c.updated_at,
+            p.name AS planner_name,
+            p.planner_code
+        FROM TB_NTALK_USER_CUSTOMER c
+        LEFT JOIN TB_NTALK_USER_PLANNER p ON c.planner_id = p.planner_id
+        WHERE 1=1
+        <include refid="searchCondition"/>
+        ORDER BY c.customer_id DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- ============================================ -->
+    <!-- 고객 총 건수 조회 -->
+    <!-- ============================================ -->
+    <select id="selectCustomerCount" parameterType="com.ntalk.choi.domain.CustomerPageRequest"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM TB_NTALK_USER_CUSTOMER c
+        LEFT JOIN TB_NTALK_USER_PLANNER p ON c.planner_id = p.planner_id
+        WHERE 1=1
+        <include refid="searchCondition"/>
+    </select>
+
+    <!-- ============================================ -->
+    <!-- 고객 단건 조회 -->
+    <!-- ============================================ -->
+    <select id="selectCustomerById" resultType="com.ntalk.choi.domain.CustomerDTO">
+        SELECT
+            c.customer_id,
+            c.planner_id,
+            c.name,
+            c.mobile,
+            c.is_active,
+            c.created_id,
+            c.created_at,
+            c.updated_id,
+            c.updated_at,
+            p.name AS planner_name,
+            p.planner_code
+        FROM TB_NTALK_USER_CUSTOMER c
+        LEFT JOIN TB_NTALK_USER_PLANNER p ON c.planner_id = p.planner_id
+        WHERE c.customer_id = #{customerId}
+          AND c.deleted_at IS NULL
+    </select>
+
+    <!-- ============================================ -->
+    <!-- 고객 등록 -->
+    <!-- ============================================ -->
+    <insert id="insertCustomer" parameterType="com.ntalk.choi.domain.CustomerDTO">
+        INSERT INTO TB_NTALK_USER_CUSTOMER (
+            planner_id, name, mobile, is_active, created_id, created_at
+        ) VALUES (
+            #{plannerId}, #{name}, #{mobile}, COALESCE(#{isActive}, true), #{createdId}, CURRENT_TIMESTAMP
+        )
+    </insert>
+
+    <!-- ============================================ -->
+    <!-- 고객 정보 수정 (인라인 에디팅) -->
+    <!-- ============================================ -->
+    <update id="updateCustomer" parameterType="com.ntalk.choi.domain.CustomerDTO">
+        UPDATE TB_NTALK_USER_CUSTOMER
+        SET
+            name = #{name},
+            mobile = #{mobile},
+            planner_id = #{plannerId},
+            is_active = #{isActive},
+            updated_id = #{updatedId},
+            updated_at = CURRENT_TIMESTAMP
+        WHERE customer_id = #{customerId}
+          AND deleted_at IS NULL
+    </update>
+
+    <!-- ============================================ -->
+    <!-- 고객 소프트 삭제 -->
+    <!-- ============================================ -->
+    <update id="deleteCustomer">
+        UPDATE TB_NTALK_USER_CUSTOMER
+        SET
+            deleted_id = #{deletedId},
+            deleted_at = CURRENT_TIMESTAMP
+        WHERE customer_id = #{customerId}
+          AND deleted_at IS NULL
+    </update>
+
+    <!-- ============================================ -->
+    <!-- 휴대폰 번호로 고객 존재 여부 확인 (엑셀 업로드 중복 체크용) -->
+    <!-- ============================================ -->
+    <select id="selectCustomerByMobile" resultType="com.ntalk.choi.domain.CustomerDTO">
+        SELECT
+            customer_id, planner_id, name, mobile, is_active
+        FROM TB_NTALK_USER_CUSTOMER
+        WHERE mobile = #{mobile}
+          AND deleted_at IS NULL
+        LIMIT 1
+    </select>
+
+    <!-- ============================================ -->
+    <!-- 설계사 목록 조회 (필터 드롭다운용) -->
+    <!-- ============================================ -->
+    <select id="selectPlannerList" resultType="com.ntalk.choi.domain.CustomerDTO">
+        SELECT
+            planner_id,
+            name AS planner_name,
+            planner_code
+        FROM TB_NTALK_USER_PLANNER
+        WHERE deleted_at IS NULL
+        ORDER BY name ASC
+    </select>
+
+</mapper>
