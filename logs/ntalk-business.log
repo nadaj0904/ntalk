@@ -1057,3 +1057,29 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
 	at java.base/java.lang.Thread.run(Thread.java:842)
 2026-04-12 07:10:17.338 WARN  7092 --- [http-nio-8080-exec-8] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-04-12 07:17:52.242 INFO  7092 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-04-12 07:17:52.246 INFO  7092 --- [Thread-1] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-12 07:17:52.247 INFO  7092 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-04-12 07:17:52.424 INFO  7092 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-04-12 07:17:52.424 INFO  7092 --- [Thread-1] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-04-12 07:17:52.429 INFO  7092 --- [Thread-1] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2026-04-12 07:17:52.434 INFO  7092 --- [Thread-1] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2026-04-12 07:17:52.697 INFO  7092 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 7092 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-04-12 07:17:52.698 INFO  7092 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-04-12 07:17:52.921 INFO  7092 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-04-12 07:17:52.969 INFO  7092 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-04-12 07:17:52.969 INFO  7092 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-12 07:17:52.970 INFO  7092 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-04-12 07:17:52.970 INFO  7092 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-12 07:17:52.996 INFO  7092 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 294 ms
+2026-04-12 07:17:53.097 INFO  7092 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-04-12 07:17:53.263 WARN  7092 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-04-12 07:17:53.277 INFO  7092 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-04-12 07:17:53.281 INFO  7092 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-04-12 07:17:53.370 INFO  7092 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 0.885 seconds (process running for 824.429)
+2026-04-12 07:17:53.372 INFO  7092 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-04-12 07:31:58.760 INFO  7092 --- [RMI TCP Connection(42)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-04-12 07:31:58.760 INFO  7092 --- [RMI TCP Connection(42)-127.0.0.1] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-12 07:31:58.762 INFO  7092 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-04-12 07:31:58.917 INFO  7092 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-04-12 07:31:58.917 INFO  7092 --- [RMI TCP Connection(42)-127.0.0.1] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
