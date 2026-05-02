@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntalk.choi.repository.PlannerMapper">
+
+    <sql id="plannerSearchCondition">
+        <if test="keyword != null and keyword != ''">
+            AND (p.name LIKE CONCAT('%', #{keyword}, '%') 
+                 OR p.planner_code LIKE CONCAT('%', #{keyword}, '%')
+                 OR p.mobile LIKE CONCAT('%', #{keyword}, '%')
+                 OR p.branch_name LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="companyCd != null and companyCd != ''">
+            AND p.company_cd = #{companyCd}
+        </if>
+    </sql>
+
+    <select id="selectPlannerList" parameterType="com.ntalk.choi.domain.PlannerPageRequest" resultType="com.ntalk.choi.domain.PlannerDTO">
+        SELECT p.planner_id, p.name, p.planner_code, p.company_cd, c.code_name as company_name, 
+               p.branch_name, p.email, p.mobile, p.license_info, p.intro, p.deleted_at
+        FROM TB_NTALK_USER_PLANNER p
+        LEFT JOIN TB_NTALK_CODE c ON p.company_cd = c.code_id AND c.code_init = 'INS_COMPANY'
+        WHERE p.deleted_at IS NULL
+        <include refid="plannerSearchCondition"/>
+        ORDER BY p.planner_id DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="selectPlannerCount" parameterType="com.ntalk.choi.domain.PlannerPageRequest" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_NTALK_USER_PLANNER p
+        WHERE p.deleted_at IS NULL
+        <include refid="plannerSearchCondition"/>
+    </select>
+
+    <select id="selectPlannerById" resultType="com.ntalk.choi.domain.PlannerDTO">
+        SELECT p.planner_id, p.name, p.planner_code, p.company_cd, c.code_name as company_name, 
+               p.branch_name, p.email, p.mobile, p.license_info, p.intro, p.deleted_at
+        FROM TB_NTALK_USER_PLANNER p
+        LEFT JOIN TB_NTALK_CODE c ON p.company_cd = c.code_id AND c.code_init = 'INS_COMPANY'
+        WHERE p.planner_id = #{plannerId} AND p.deleted_at IS NULL
+    </select>
+
+    <insert id="insertPlanner" parameterType="com.ntalk.choi.domain.PlannerDTO" useGeneratedKeys="true" keyProperty="plannerId">
+        INSERT INTO TB_NTALK_USER_PLANNER (
+            name, planner_code, company_cd, branch_name, email, mobile, license_info, intro
+        ) VALUES (
+            #{name}, #{plannerCode}, #{companyCd}, #{branchName}, #{email}, #{mobile}, #{licenseInfo}, #{intro}
+        )
+    </insert>
+
+    <update id="updatePlanner" parameterType="com.ntalk.choi.domain.PlannerDTO">
+        UPDATE TB_NTALK_USER_PLANNER
+        SET name = #{name},
+            planner_code = #{plannerCode},
+            company_cd = #{companyCd},
+            branch_name = #{branchName},
+            email = #{email},
+            mobile = #{mobile},
+            license_info = #{licenseInfo},
+            intro = #{intro}
+        WHERE planner_id = #{plannerId}
+    </update>
+
+    <update id="deletePlanners" parameterType="java.util.List">
+        UPDATE TB_NTALK_USER_PLANNER
+        SET deleted_at = CURRENT_TIMESTAMP
+        WHERE planner_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"/>
+    <title>플래너 관리 - 보험영업지원 시스템</title>
+
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.min.css" />
+    <script src="https://uicdn.toast.com/grid/latest/tui-grid.min.js"></script>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/custAdmin.css">
+</head>
+<body>
+
+    <aside>
+        <div class="logo-area">
+            <i class="ph-fill ph-shield-check" style="color: var(--primary-color);"></i>
+            <span style="margin-left: 10px;">보험영업지원</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="/index" class="nav-item">
+                <i class="ph ph-squares-four"></i>
+                메인 대시보드 (Home)
+            </a>
+            <a href="/send" class="nav-item">
+                <i class="ph ph-paper-plane-tilt"></i>
+                바로 발송
+            </a>
+            <a href="/admin/custAdmin" class="nav-item">
+                <i class="ph ph-database"></i>
+                데이터 관리
+            </a>
+            <a href="/admin/plannerAdmin" class="nav-item active">
+                <i class="ph ph-user-circle"></i>
+                플래너 관리
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/admin/settings" class="admin-settings">
+                <i class="ph ph-gear"></i>
+                관리자 설정
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-wrapper">
+
+        <header>
+            <div class="header-left">
+                <span>데이터 관리 - 플래너 관리</span>
+            </div>
+            <div class="header-right">
+                <div class="timer-wrapper" title="남은 세션 시간">
+                    <i class="ph ph-clock"></i>
+                    <span class="time-display" id="session-timer">60:00</span>
+                    <button type="button" class="btn-extend" id="btn-extend">연장</button>
+                </div>
+                <div class="user-info">
+                    <div class="avatar" th:text="${user.email != null ? user.email.substring(0,1).toUpperCase() : 'U'}">A</div>
+                    <span th:text="${user.email}">admin@example.com</span>
+                </div>
+                <a href="/logout" class="btn-logout" title="로그아웃">
+                    <i class="ph ph-sign-out"></i>
+                    <span>로그아웃</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="cust-main">
+
+            <section class="action-bar">
+                <div class="action-left">
+                    <i class="ph-fill ph-users-three"></i>
+                    <span>전체 플래너: <strong id="total-count">0</strong>명</span>
+                </div>
+                <div class="action-right">
+                    <button type="button" class="btn btn-outline" id="btn-download">
+                        <i class="ph ph-file-arrow-down"></i> 엑셀 다운로드
+                    </button>
+                    <button type="button" class="btn btn-success" id="btn-add">
+                        <i class="ph ph-user-plus"></i> 플래너 추가
+                    </button>
+                    <button type="button" class="btn btn-danger" id="btn-delete" disabled>
+                        <i class="ph ph-trash"></i> 선택 삭제
+                    </button>
+                </div>
+            </section>
+
+            <section class="filter-pane">
+                <div class="search-box">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="search-keyword" placeholder="플래너명, 사번, 지점, 휴대폰 검색..." />
+                </div>
+                <div class="filter-group">
+                    <button type="button" class="btn btn-sm" id="btn-search">
+                        <i class="ph ph-funnel"></i> 조회
+                    </button>
+                </div>
+            </section>
+
+            <section class="grid-wrapper">
+                <div id="grid"></div>
+            </section>
+
+            <section class="paging-area">
+                <div id="paging"></div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2026 보험 마케팅 관리자. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- 플래너 추가 모달 -->
+    <div class="modal-overlay" id="add-modal" style="display: none;">
+        <div class="modal-container modal-sm">
+            <div class="modal-header">
+                <h3><i class="ph ph-user-plus"></i> 플래너 추가</h3>
+                <button type="button" class="modal-close" id="btn-add-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="add-name">플래너명</label>
+                    <input type="text" id="add-name" class="form-control" placeholder="홍길동" />
+                </div>
+                <div class="form-group">
+                    <label for="add-code">사번 (Planner Code)</label>
+                    <input type="text" id="add-code" class="form-control" placeholder="P0001" />
+                </div>
+                <div class="form-group">
+                    <label for="add-company">소속회사 코드</label>
+                    <input type="text" id="add-company" class="form-control" placeholder="L01" />
+                </div>
+                <div class="form-group">
+                    <label for="add-branch">소속지점</label>
+                    <input type="text" id="add-branch" class="form-control" placeholder="강남지점" />
+                </div>
+                <div class="form-group">
+                    <label for="add-email">이메일</label>
+                    <input type="text" id="add-email" class="form-control" placeholder="test@test.com" />
+                </div>
+                <div class="form-group">
+                    <label for="add-mobile">휴대폰 번호</label>
+                    <input type="text" id="add-mobile" class="form-control" placeholder="010-0000-0000" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="btn-add-cancel">취소</button>
+                <button type="button" class="btn btn-success" id="btn-add-save">
+                    <i class="ph ph-check"></i> 등록
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/plannerAdmin.js"></script>
+</body>
+</html>

@@ -35,6 +35,12 @@ CREATE TABLE IF NOT EXISTS TB_NTALK_USER_PLANNER (
     planner_id SERIAL PRIMARY KEY,
     name VARCHAR(100),
     planner_code VARCHAR(50),
+    company_cd VARCHAR(50),
+    branch_name VARCHAR(100),
+    email VARCHAR(100),
+    mobile VARCHAR(20),
+    license_info VARCHAR(255),
+    intro TEXT,
     deleted_at TIMESTAMP
 );
 
@@ -74,6 +80,60 @@ CREATE TABLE IF NOT EXISTS TB_NTALK_SEND_QUEUE (
     status VARCHAR(50) DEFAULT 'PENDING',
     created_id VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS TB_NTALK_CODE (
+    code_init VARCHAR(30) NOT NULL,
+    code_id VARCHAR(20) NOT NULL,
+    client_id INT NOT NULL,
+    code_name VARCHAR(150) NOT NULL,
+    code_nickname VARCHAR(150),
+    print_order INT,
+    use_yn BOOLEAN,
+    disp_yn BOOLEAN,
+    code_description VARCHAR(200),
+    created_id VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_id VARCHAR(100),
+    updated_at TIMESTAMP,
+    deleted_id VARCHAR(100),
+    deleted_at TIMESTAMP,
+    PRIMARY KEY (code_init, code_id, client_id)
+);
+
+CREATE TABLE IF NOT EXISTS TB_NTALK_CODE_MAP_MANAGEMENT (
+    client_id INT NOT NULL,
+    mapping_init VARCHAR(30) NOT NULL,
+    mapping_group VARCHAR(30) NOT NULL,
+    mapping_code VARCHAR(100) NOT NULL,
+    mapping_init_name VARCHAR(150),
+    mapping_group_name VARCHAR(150),
+    mapping_code_name VARCHAR(150) NOT NULL,
+    use_yn BOOLEAN,
+    disp_yn BOOLEAN,
+    print_order INT,
+    created_id VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_id VARCHAR(100),
+    updated_at TIMESTAMP,
+    deleted_id VARCHAR(100),
+    deleted_at TIMESTAMP,
+    PRIMARY KEY (client_id, mapping_init, mapping_group, mapping_code)
+);
+
+CREATE TABLE IF NOT EXISTS TB_NTALK_CODE_MANAGEMENT (
+    code_init VARCHAR(30) NOT NULL,
+    client_id INT NOT NULL,
+    code_init_name VARCHAR(150) NOT NULL,
+    use_yn BOOLEAN,
+    created_id VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_id VARCHAR(100),
+    updated_at TIMESTAMP,
+    deleted_id VARCHAR(100),
+    deleted_at TIMESTAMP,
+    PRIMARY KEY (code_init, client_id)
 );
 
 -- DML (DELETE first to avoid duplicates if run multiple times)
