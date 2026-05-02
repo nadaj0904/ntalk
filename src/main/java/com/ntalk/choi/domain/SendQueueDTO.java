@@ -25,6 +25,19 @@ public class SendQueueDTO implements Serializable {
     private String updatedId;
     private LocalDateTime updatedAt;
 
+    // Alimtalk (MZSENDTRAN) 전용 필드
+    private String sn;
+    private String senderKey;
+    private String channel;
+    private String sndType;
+    private String phoneNum;
+    private String tmplCd;
+    private String reqDtm;
+    private String attachment;
+    private String title;
+    private String header;
+    private String msgType;
+
     // JOIN 조회용
     private String customerName;
     private String customerMobile;
@@ -71,4 +84,27 @@ public class SendQueueDTO implements Serializable {
     public void setPlannerName(String plannerName) { this.plannerName = plannerName; }
     public String getPlannerCode() { return plannerCode; }
     public void setPlannerCode(String plannerCode) { this.plannerCode = plannerCode; }
+
+    public String getSn() { return sn; }
+    public void setSn(String sn) { this.sn = sn; }
+    public String getSenderKey() { return senderKey; }
+    public void setSenderKey(String senderKey) { this.senderKey = senderKey; }
+    public String getChannel() { return channel; }
+    public void setChannel(String channel) { this.channel = channel; }
+    public String getSndType() { return sndType; }
+    public void setSndType(String sndType) { this.sndType = sndType; }
+    public String getPhoneNum() { return phoneNum; }
+    public void setPhoneNum(String phoneNum) { this.phoneNum = phoneNum; }
+    public String getTmplCd() { return tmplCd; }
+    public void setTmplCd(String tmplCd) { this.tmplCd = tmplCd; }
+    public String getReqDtm() { return reqDtm; }
+    public void setReqDtm(String reqDtm) { this.reqDtm = reqDtm; }
+    public String getAttachment() { return attachment; }
+    public void setAttachment(String attachment) { this.attachment = attachment; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getHeader() { return header; }
+    public void setHeader(String header) { this.header = header; }
+    public String getMsgType() { return msgType; }
+    public void setMsgType(String msgType) { this.msgType = msgType; }
 }

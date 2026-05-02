@@ -14,6 +14,8 @@ public class SendTemplateDTO implements Serializable {
     private String contentText;
     private String imageUrl;
     private String category;
+    private String templateCode;
+    private String attachmentJson;
     private Boolean isActive;
     private String createdId;
     private LocalDateTime createdAt;
@@ -40,6 +42,10 @@ public class SendTemplateDTO implements Serializable {
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public String getUpdatedId() { return updatedId; }
     public void setUpdatedId(String updatedId) { this.updatedId = updatedId; }
-    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    private LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+    public String getTemplateCode() { return templateCode; }
+    public void setTemplateCode(String templateCode) { this.templateCode = templateCode; }
+    public String getAttachmentJson() { return attachmentJson; }
+    public void setAttachmentJson(String attachmentJson) { this.attachmentJson = attachmentJson; }
 }

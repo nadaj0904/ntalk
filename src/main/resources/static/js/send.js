@@ -15,6 +15,7 @@ $(function () {
     let selectedPlannerIds = [];     // 선택된 설계사 ID 배열
     let customerList = [];           // 현재 로드된 고객 목록
     let templateList = [];           // 템플릿 목록
+    let selectedTemplate = null;     // 선택된 알림톡 템플릿
 
     // ================================================
     // 초기화
@@ -359,6 +360,7 @@ $(function () {
         var id = parseInt($(this).data('id'));
         var t = templateList.find(function (x) { return x.templateId === id; });
         if (t) {
+            selectedTemplate = t;
             $('#message-text').val(t.contentText || '');
             syncKakaoPreview();
         }
@@ -469,7 +471,12 @@ $(function () {
                 plannerId: c.plannerId,
                 messageText: replaced,
                 sendType: sendType,
-                scheduledAt: scheduledAt
+                scheduledAt: scheduledAt,
+                phoneNum: c.mobile,
+                tmplCd: selectedTemplate ? selectedTemplate.templateCode : 'TMPL_BASIC',
+                attachment: selectedTemplate ? selectedTemplate.attachmentJson : null,
+                title: selectedTemplate && selectedTemplate.templateCode === 'TMPL_HIGHLIGHT' ? '엔톡 시스템' : null,
+                header: selectedTemplate && selectedTemplate.templateCode === 'TMPL_ITEMLIST' ? '주문내역' : null
             };
         });
 
@@ -503,6 +510,7 @@ $(function () {
         currentStep = 1;
         selectedPlannerIds = [];
         customerList = [];
+        selectedTemplate = null;
         $('#message-text').val('');
         syncKakaoPreview();
         syncPlannerUI();

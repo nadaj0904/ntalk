@@ -41,7 +41,42 @@ public class SendServiceImpl implements SendService {
     @Transactional
     public int requestBulkSend(List<SendQueueDTO> sendList, String createdId) {
         if (sendList == null || sendList.isEmpty()) return 0;
-        sendList.forEach(item -> item.setCreatedId(createdId));
+        
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String reqDtm = java.time.LocalDateTime.now().format(formatter);
+        String senderKey = "05effb35329654198980dd7e6c6c50f7f2a65deb"; // from profile.md
+        
+        for (SendQueueDTO item : sendList) {
+            item.setCreatedId(createdId);
+            
+            // Generate SN
+            item.setSn("Test-" + java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 15));
+            item.setSenderKey(senderKey);
+            item.setChannel("A"); // Alimtalk
+            item.setSndType("P"); // Push
+            
+            // Phone number formatting (digits only)
+            if (item.getPhoneNum() != null) {
+                item.setPhoneNum(item.getPhoneNum().replaceAll("[^0-9]", ""));
+            } else if (item.getCustomerMobile() != null) {
+                item.setPhoneNum(item.getCustomerMobile().replaceAll("[^0-9]", ""));
+            } else {
+                item.setPhoneNum("01000000000"); // fallback
+            }
+            
+            item.setReqDtm(reqDtm);
+            
+            // Set message type
+            if ("TMPL_IMAGE".equals(item.getTmplCd())) {
+                item.setMsgType("AI");
+            } else {
+                item.setMsgType("AT");
+            }
+            
+            if (item.getTmplCd() == null || item.getTmplCd().isEmpty()) {
+                item.setTmplCd("TMPL_BASIC");
+            }
+        }
         return sendMapper.insertSendQueueBatch(sendList);
     }
 }

@@ -27,23 +27,29 @@
     </select>
 
     <select id="selectTemplateList" resultType="com.ntalk.choi.domain.SendTemplateDTO">
-        SELECT template_id, title, content_text, image_url, category
+        SELECT template_id, title, content_text, image_url, category, template_code, attachment_json
         FROM TB_NTALK_SEND_TEMPLATE
         WHERE is_active = true AND deleted_at IS NULL
         ORDER BY template_id DESC
     </select>
 
     <select id="selectTemplateById" resultType="com.ntalk.choi.domain.SendTemplateDTO">
-        SELECT template_id, title, content_text, image_url, category
+        SELECT template_id, title, content_text, image_url, category, template_code, attachment_json
         FROM TB_NTALK_SEND_TEMPLATE
         WHERE template_id = #{templateId} AND deleted_at IS NULL
     </select>
 
     <insert id="insertSendQueueBatch" parameterType="java.util.List">
-        INSERT INTO TB_NTALK_SEND_QUEUE (customer_id, planner_id, template_id, message_text, image_url, send_type, scheduled_at, status, created_id, created_at)
+        INSERT INTO MZSENDTRAN (
+            SN, SENDER_KEY, CHANNEL, SND_TYPE, PHONE_NUM, TMPL_CD,
+            SND_MSG, REQ_DTM, TRAN_STS, TR_TYPE_CD, ATTACHMENT, TITLE, HEADER, MSG_TYPE
+        )
         VALUES
         <foreach collection="list" item="i" separator=",">
-        (#{i.customerId}, #{i.plannerId}, #{i.templateId}, #{i.messageText}, #{i.imageUrl}, #{i.sendType}, #{i.scheduledAt}, 'PENDING', #{i.createdId}, CURRENT_TIMESTAMP)
+        (
+            #{i.sn}, #{i.senderKey}, #{i.channel}, #{i.sndType}, #{i.phoneNum}, #{i.tmplCd},
+            #{i.messageText}, #{i.reqDtm}, '1', '1', #{i.attachment}, #{i.title}, #{i.header}, #{i.msgType}
+        )
         </foreach>
     </insert>
 </mapper>

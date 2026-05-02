@@ -207,3 +207,716 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
 	at java.base/java.lang.Thread.run(Thread.java:842)
 2026-05-02 15:12:39.414 WARN  25076 --- [http-nio-8080-exec-6] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:14:15.651 ERROR 25076 --- [http-nio-8080-exec-9] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:14:15.653 WARN  25076 --- [http-nio-8080-exec-9] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:14:16.413 ERROR 25076 --- [http-nio-8080-exec-8] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:14:16.416 WARN  25076 --- [http-nio-8080-exec-8] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:44:31.809 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-02 15:44:31.816 INFO  25076 --- [Thread-7] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:44:31.819 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:32.308 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:44:32.309 INFO  25076 --- [Thread-7] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:32.318 INFO  25076 --- [Thread-7] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2026-05-02 15:44:32.342 INFO  25076 --- [Thread-7] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2026-05-02 15:44:32.795 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:44:32.795 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:44:33.462 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:44:33.636 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:44:33.639 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:33.639 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:44:33.639 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:44:33.691 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 890 ms
+2026-05-02 15:44:33.967 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:44:34.467 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:44:34.503 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:34.515 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:44:34.776 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.325 seconds (process running for 2399.279)
+2026-05-02 15:44:34.779 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:44:35.650 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-02 15:44:35.654 INFO  25076 --- [Thread-13] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:44:35.656 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:36.178 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:44:36.178 INFO  25076 --- [Thread-13] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:36.604 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:44:36.604 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:44:37.202 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:44:37.339 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:44:37.343 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:37.343 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:44:37.343 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:44:37.418 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 809 ms
+2026-05-02 15:44:37.639 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:44:38.176 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:44:38.212 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:38.221 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:44:38.510 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.243 seconds (process running for 2403.016)
+2026-05-02 15:44:38.517 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:44:44.517 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-02 15:44:44.517 INFO  25076 --- [Thread-19] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:44:44.521 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:45.045 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:44:45.046 INFO  25076 --- [Thread-19] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:45.446 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:44:45.447 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:44:46.010 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:44:46.144 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:44:46.147 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:46.147 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:44:46.148 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:44:46.218 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 764 ms
+2026-05-02 15:44:46.450 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:44:46.900 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:44:46.939 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:46.947 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:44:47.239 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.096 seconds (process running for 2411.744)
+2026-05-02 15:44:47.243 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:44:48.089 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-02 15:44:48.094 INFO  25076 --- [Thread-25] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:44:48.096 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:48.630 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:44:48.632 INFO  25076 --- [Thread-25] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:49.081 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:44:49.082 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:44:49.609 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:44:49.732 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:44:49.733 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:49.733 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:44:49.733 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:44:49.806 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 720 ms
+2026-05-02 15:44:50.021 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:44:50.468 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:44:50.507 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:44:50.515 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:44:50.803 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.079 seconds (process running for 2415.307)
+2026-05-02 15:44:50.807 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:45:10.652 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-02 15:45:10.656 INFO  25076 --- [Thread-31] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:45:10.657 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:11.215 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:45:11.217 INFO  25076 --- [Thread-31] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:11.663 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:45:11.664 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:45:12.174 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:45:12.286 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:45:12.288 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:12.289 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:45:12.289 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:45:12.360 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 691 ms
+2026-05-02 15:45:12.584 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:45:13.044 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:45:13.071 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:13.080 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:45:13.360 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.039 seconds (process running for 2437.865)
+2026-05-02 15:45:13.364 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:45:22.656 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-02 15:45:22.657 INFO  25076 --- [Thread-37] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:45:22.659 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:23.182 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:45:23.182 INFO  25076 --- [Thread-37] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:23.594 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:45:23.597 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:45:24.126 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:45:24.239 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:45:24.239 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:24.239 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:45:24.243 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:45:24.310 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 707 ms
+2026-05-02 15:45:24.515 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:45:24.983 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:45:25.014 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:25.024 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:45:25.324 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.06 seconds (process running for 2449.827)
+2026-05-02 15:45:25.327 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:45:44.024 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-02 15:45:44.026 INFO  25076 --- [Thread-43] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:45:44.026 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:44.550 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:45:44.556 INFO  25076 --- [Thread-43] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:44.968 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:45:44.971 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:45:45.510 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:45:45.647 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:45:45.649 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:45.649 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:45:45.649 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:45:45.721 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 745 ms
+2026-05-02 15:45:45.942 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:45:46.372 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:45:46.409 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:45:46.418 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:45:46.751 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.119 seconds (process running for 2471.255)
+2026-05-02 15:45:46.754 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:46:28.109 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 25 class path changes (0 additions, 24 deletions, 1 modification)
+2026-05-02 15:46:28.110 INFO  25076 --- [Thread-49] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:46:28.112 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:46:28.821 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:46:28.821 INFO  25076 --- [Thread-49] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:46:29.519 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:46:29.521 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:46:30.087 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=bc497aa0-c35f-3182-a899-9718844d63f5
+2026-05-02 15:46:30.195 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:46:30.195 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:46:30.195 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:46:30.195 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:46:30.257 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 733 ms
+2026-05-02 15:46:30.430 WARN  25076 --- [restartedMain] o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sendController' defined in file [C:\Dev_ntalk_project\ntalk\target\classes\com\ntalk\choi\controller\SendController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.ntalk.choi.service.SendService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2026-05-02 15:46:30.431 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Stopping service [Tomcat]
+2026-05-02 15:46:30.442 INFO  25076 --- [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-02 15:46:30.489 ERROR 25076 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.ntalk.choi.controller.SendController required a bean of type 'com.ntalk.choi.service.SendService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.ntalk.choi.service.SendService' in your configuration.
+
+2026-05-02 15:46:32.310 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:46:32.310 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:46:33.650 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:46:33.905 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:46:33.916 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:46:33.916 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:46:33.916 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:46:34.058 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1743 ms
+2026-05-02 15:46:34.516 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:46:34.989 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:46:35.018 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:46:35.034 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:46:35.464 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 3.457 seconds (process running for 2519.967)
+2026-05-02 15:46:35.464 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:49:06.640 INFO  25076 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)
+2026-05-02 15:49:06.642 INFO  25076 --- [Thread-55] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:49:06.643 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:06.887 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:49:06.887 INFO  25076 --- [Thread-55] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:07.119 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 25076 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:49:07.119 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:49:07.381 INFO  25076 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:49:07.422 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:49:07.424 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:07.424 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:49:07.424 INFO  25076 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:49:07.449 INFO  25076 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 327 ms
+2026-05-02 15:49:07.522 INFO  25076 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:49:07.682 WARN  25076 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:49:07.695 INFO  25076 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:07.698 INFO  25076 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:49:07.795 INFO  25076 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 0.848 seconds (process running for 2672.299)
+2026-05-02 15:49:07.796 INFO  25076 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-02 15:49:11.065 INFO  25076 --- [RMI TCP Connection(71)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-05-02 15:49:11.066 INFO  25076 --- [RMI TCP Connection(71)-127.0.0.1] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-02 15:49:11.066 INFO  25076 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:11.234 INFO  25076 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-02 15:49:11.234 INFO  25076 --- [RMI TCP Connection(71)-127.0.0.1] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:36.314 INFO  23460 --- [main] com.ntalk.choi.NtalkApplicationTests : Starting NtalkApplicationTests using Java 17.0.12 with PID 23460 (started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:49:36.315 INFO  23460 --- [main] com.ntalk.choi.NtalkApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:49:37.259 INFO  23460 --- [main] o.s.cloud.context.scope.GenericScope : BeanFactory id=c21cf5ea-a8c4-3f83-8f17-efc08a76702a
+2026-05-02 15:49:38.083 INFO  23460 --- [main] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:49:38.915 WARN  23460 --- [main] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:49:38.935 INFO  23460 --- [main] com.ntalk.choi.NtalkApplicationTests : Started NtalkApplicationTests in 3.271 seconds (process running for 4.739)
+2026-05-02 15:49:49.959 INFO  18872 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 18872 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-02 15:49:49.962 INFO  18872 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-02 15:49:50.010 INFO  18872 --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-02 15:49:50.011 INFO  18872 --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-02 15:49:50.772 INFO  18872 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=c40c7e9a-8f4d-3dfc-b8d9-c028ce7e9797
+2026-05-02 15:49:51.197 INFO  18872 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-02 15:49:51.215 INFO  18872 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:51.216 INFO  18872 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-02 15:49:51.218 INFO  18872 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-02 15:49:51.272 INFO  18872 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1261 ms
+2026-05-02 15:49:51.687 INFO  18872 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-02 15:49:52.165 WARN  18872 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02 15:49:52.204 INFO  18872 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-02 15:49:52.226 INFO  18872 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-02 15:49:52.342 INFO  18872 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.975 seconds (process running for 3.942)
+2026-05-02 15:51:03.253 INFO  18872 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-02 15:51:03.254 INFO  18872 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2026-05-02 15:51:03.256 INFO  18872 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 2 ms
+2026-05-02 15:51:04.489 ERROR 18872 --- [http-nio-8080-exec-6] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:04.644 WARN  18872 --- [http-nio-8080-exec-6] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:51:17.072 INFO  18872 --- [http-nio-8080-exec-7] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2026-05-02 15:51:17.928 INFO  18872 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@35125cd0
+2026-05-02 15:51:17.933 INFO  18872 --- [http-nio-8080-exec-7] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2026-05-02 15:51:18.896 ERROR 18872 --- [http-nio-8080-exec-1] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:18.900 WARN  18872 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:51:20.463 ERROR 18872 --- [http-nio-8080-exec-10] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:20.469 WARN  18872 --- [http-nio-8080-exec-10] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:51:32.855 ERROR 18872 --- [http-nio-8080-exec-5] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:32.859 WARN  18872 --- [http-nio-8080-exec-5] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:51:33.652 ERROR 18872 --- [http-nio-8080-exec-4] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:33.655 WARN  18872 --- [http-nio-8080-exec-4] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:51:42.282 ERROR 18872 --- [http-nio-8080-exec-9] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:42.283 WARN  18872 --- [http-nio-8080-exec-9] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:51:43.899 ERROR 18872 --- [http-nio-8080-exec-5] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:43.903 WARN  18872 --- [http-nio-8080-exec-5] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:51:44.707 ERROR 18872 --- [http-nio-8080-exec-1] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:51:44.710 WARN  18872 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:52:49.295 ERROR 18872 --- [http-nio-8080-exec-3] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:52:49.299 WARN  18872 --- [http-nio-8080-exec-3] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
+2026-05-02 15:53:53.934 ERROR 18872 --- [http-nio-8080-exec-4] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1779)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2026-05-02 15:53:53.937 WARN  18872 --- [http-nio-8080-exec-4] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.]
