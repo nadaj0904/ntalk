@@ -74,7 +74,7 @@ public class SendServiceImpl implements SendService {
             }
             
             if (item.getTmplCd() == null || item.getTmplCd().isEmpty()) {
-                item.setTmplCd("TMPL_BASIC");
+                item.setTmplCd("BASIC-01");
             }
         }
         return sendMapper.insertSendQueueBatch(sendList);

@@ -473,7 +473,7 @@ $(function () {
                 sendType: sendType,
                 scheduledAt: scheduledAt,
                 phoneNum: c.mobile,
-                tmplCd: selectedTemplate ? selectedTemplate.templateCode : 'TMPL_BASIC',
+                tmplCd: selectedTemplate ? selectedTemplate.templateCode : 'BASIC-01',
                 attachment: selectedTemplate ? selectedTemplate.attachmentJson : null,
                 title: selectedTemplate && selectedTemplate.templateCode === 'TMPL_HIGHLIGHT' ? '엔톡 시스템' : null,
                 header: selectedTemplate && selectedTemplate.templateCode === 'TMPL_ITEMLIST' ? '주문내역' : null
