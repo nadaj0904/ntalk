@@ -14,7 +14,7 @@ Spring Boot 환경 위에서 동작하며, 정적 자원과 뷰 템플릿이 엄
 - `src/main/resources/templates/`: `Thymeleaf` 기반의 HTML 템플릿 파일이 위치합니다. (`fragments` 폴더를 통해 공통 헤더/푸터 등 모듈화 적용)
 - `src/main/resources/static/css/`: 스타일시트 자원 (`common.css` 및 페이지 독립적인 CSS 파일 존재)
 - `src/main/resources/static/js/`: 자바스크립트 비즈니스 로직
-- `src/main/resources/static/images/` & `img/`: 이미지 
+- `src/main/resources/static/images/` & `img/`: 이미지 에셋
 
 
 
