@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token (ntalk_ajax 통신 표준 반영) -->
-    <meta name="_csrf" th:content="${_csrf != null ? _csrf.token : 'dummy-csrf-token'}"/>
-    <meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : 'X-CSRF-TOKEN'}"/>
-    
-    <title>관리자 로그인 | Gems Kakao Share Admin</title>
-    
+    <meta name="_csrf" th:content="${_csrf != null ? _csrf.token : 'dummy-csrf-token'}" />
+    <meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : 'X-CSRF-TOKEN'}" />
+
+    <title>관리자 로그인 | ntalk Admin</title>
+
     <!-- jQuery (공통 AJAX 및 CSRF 주입 활용) -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- 공통 로딩 UI 및 AJAX 모듈 -->
@@ -19,35 +20,38 @@
     <!-- Local CSS -->
     <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
 </head>
+
 <body>
 
     <div class="login-wrapper">
         <div class="login-card">
-            
+
             <!-- 헤더 영역 (로고 및 타이틀) -->
             <div class="login-header">
                 <div class="login-logo">
                     <i class="fa-solid fa-shield-halved"></i>
-                    Gems Kakao Share Admin
+                    ntalk Admin
                 </div>
                 <h1 class="login-title">관리자 시스템에 로그인하세요.</h1>
-                <p class="login-subtitle">보험 설계사 지원 플랫폼 어드민</p>
-                
+                <p class="login-subtitle">ntalk 관리자 시스템</p>
+
                 <!-- 서버 측 로그인 실패 에러 메시지 -->
-                <div th:if="${error}" class="server-error-message" style="color: #d32f2f; font-size: 14px; margin-top: 15px; padding: 10px; background: rgba(211, 47, 47, 0.05); border-radius: 6px;">
+                <div th:if="${error}" class="server-error-message"
+                    style="color: #d32f2f; font-size: 14px; margin-top: 15px; padding: 10px; background: rgba(211, 47, 47, 0.05); border-radius: 6px;">
                     <i class="fa-solid fa-triangle-exclamation"></i> <span th:text="${error}">에러 메시지</span>
                 </div>
             </div>
 
             <!-- 로그인 폼 -->
             <form id="loginForm" th:action="@{/login}" method="POST" onsubmit="return handleLogin(event)">
-                
+
                 <!-- ID 필드 -->
                 <div class="form-group" id="idGroup">
                     <label for="adminId" class="form-label">아이디 (이메일)</label>
                     <div class="input-wrapper">
                         <i class="fa-regular fa-envelope input-icon"></i>
-                        <input type="email" id="adminId" name="adminId" class="form-input" placeholder="admin@example.com" autocomplete="username">
+                        <input type="email" id="adminId" name="adminId" class="form-input" placeholder="[EMAIL_ADDRESS]"
+                            autocomplete="username">
                     </div>
                     <span class="error-message">유효한 이메일 형식의 아이디를 입력해주세요.</span>
                 </div>
@@ -57,8 +61,10 @@
                     <label for="adminPw" class="form-label">비밀번호</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-lock input-icon"></i>
-                        <input type="password" id="adminPw" name="adminPw" class="form-input" placeholder="비밀번호를 입력하세요" autocomplete="current-password">
-                        <i class="fa-regular fa-eye toggle-password" id="togglePwIcon" onclick="togglePasswordVisiblity()" title="비밀번호 보기"></i>
+                        <input type="password" id="adminPw" name="adminPw" class="form-input" placeholder="비밀번호를 입력하세요"
+                            autocomplete="current-password">
+                        <i class="fa-regular fa-eye toggle-password" id="togglePwIcon"
+                            onclick="togglePasswordVisiblity()" title="비밀번호 보기"></i>
                     </div>
                     <span class="error-message">비밀번호를 입력해주세요.</span>
                 </div>
@@ -69,13 +75,14 @@
                         <input type="checkbox" id="saveId" name="saveId">
                         <label for="saveId">아이디 저장</label>
                     </div>
-                    
+
                     <div class="checkbox-option-wrapper">
                         <div class="checkbox-group">
                             <input type="checkbox" id="autoLogin" name="autoLogin">
                             <label for="autoLogin">자동 로그인</label>
                         </div>
-                        <span class="warning-text"><i class="fa-solid fa-circle-exclamation"></i> 공용 PC에서는 사용을 자제해 주세요.</span>
+                        <span class="warning-text"><i class="fa-solid fa-circle-exclamation"></i> 공용 PC에서는 사용을 자제해
+                            주세요.</span>
                     </div>
                 </div>
 
@@ -100,4 +107,5 @@
     <!-- Local Script -->
     <script th:src="@{/js/login.js}" src="../static/js/login.js"></script>
 </body>
+
 </html>
