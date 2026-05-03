@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"/>
-    <title>플래너 관리 - 보험영업지원 시스템</title>
+    <title>메세지 관리 - 보험영업지원 시스템</title>
 
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -37,11 +37,11 @@
                 <i class="ph ph-database"></i>
                 데이터 관리
             </a>
-            <a href="/admin/plannerAdmin" class="nav-item active">
+            <a href="/admin/plannerAdmin" class="nav-item">
                 <i class="ph ph-user-circle"></i>
                 플래너 관리
             </a>
-            <a href="/admin/templateAdmin" class="nav-item">
+            <a href="/admin/templateAdmin" class="nav-item active">
                 <i class="ph ph-chat-circle-text"></i>
                 메세지 관리
             </a>
@@ -58,7 +58,7 @@
 
         <header>
             <div class="header-left">
-                <span>데이터 관리 - 플래너 관리</span>
+                <span>데이터 관리 - 메세지 관리</span>
             </div>
             <div class="header-right">
                 <div class="timer-wrapper" title="남은 세션 시간">
@@ -81,15 +81,15 @@
 
             <section class="action-bar">
                 <div class="action-left">
-                    <i class="ph-fill ph-users-three"></i>
-                    <span>전체 플래너: <strong id="total-count">0</strong>명</span>
+                    <i class="ph-fill ph-chat-circle-text"></i>
+                    <span>전체 템플릿: <strong id="total-count">0</strong>건</span>
                 </div>
                 <div class="action-right">
                     <button type="button" class="btn btn-outline" id="btn-download">
                         <i class="ph ph-file-arrow-down"></i> 엑셀 다운로드
                     </button>
                     <button type="button" class="btn btn-success" id="btn-add">
-                        <i class="ph ph-user-plus"></i> 플래너 추가
+                        <i class="ph ph-plus-circle"></i> 템플릿 추가
                     </button>
                     <button type="button" class="btn btn-danger" id="btn-delete" disabled>
                         <i class="ph ph-trash"></i> 선택 삭제
@@ -100,7 +100,7 @@
             <section class="filter-pane">
                 <div class="search-box">
                     <i class="ph ph-magnifying-glass"></i>
-                    <input type="text" id="search-keyword" placeholder="플래너명, 사번, 지점, 휴대폰 검색..." />
+                    <input type="text" id="search-keyword" placeholder="템플릿명, 내용 검색..." />
                 </div>
                 <div class="filter-group">
                     <button type="button" class="btn btn-sm" id="btn-search">
@@ -124,49 +124,47 @@
         </footer>
     </div>
 
-    <!-- 플래너 추가 모달 -->
-    <div class="modal-overlay" id="add-modal" style="display: none;">
-        <div class="modal-container modal-sm">
+    <!-- 템플릿 등록/수정 모달 -->
+    <div class="modal-overlay" id="form-modal" style="display: none;">
+        <div class="modal-container modal-md">
             <div class="modal-header">
-                <h3><i class="ph ph-user-plus"></i> 플래너 추가</h3>
-                <button type="button" class="modal-close" id="btn-add-close">&times;</button>
+                <h3 id="modal-title"><i class="ph ph-plus-circle"></i> 템플릿 추가</h3>
+                <button type="button" class="modal-close" id="btn-form-close">&times;</button>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="form-template-id" value="" />
                 <div class="form-group">
-                    <label for="add-name">플래너명</label>
-                    <input type="text" id="add-name" class="form-control" placeholder="홍길동" />
+                    <label for="form-title">제목 (Title)</label>
+                    <input type="text" id="form-title" class="form-control" placeholder="가입 축하 메시지" />
                 </div>
                 <div class="form-group">
-                    <label for="add-code">사번 (Planner Code)</label>
-                    <input type="text" id="add-code" class="form-control" placeholder="P0001" />
+                    <label for="form-category">카테고리</label>
+                    <input type="text" id="form-category" class="form-control" placeholder="WELCOME" />
                 </div>
                 <div class="form-group">
-                    <label for="add-company">소속회사 코드</label>
-                    <input type="text" id="add-company" class="form-control" placeholder="L01" />
+                    <label for="form-content">내용 (Content)</label>
+                    <textarea id="form-content" class="form-control" rows="5" placeholder="고객님의 가입을 진심으로 축하드립니다."></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="add-branch">소속지점</label>
-                    <input type="text" id="add-branch" class="form-control" placeholder="강남지점" />
+                    <label for="form-image">이미지 URL (선택)</label>
+                    <input type="text" id="form-image" class="form-control" placeholder="https://example.com/image.jpg" />
                 </div>
                 <div class="form-group">
-                    <label for="add-email">이메일</label>
-                    <input type="text" id="add-email" class="form-control" placeholder="test@test.com" />
-                </div>
-                <div class="form-group">
-                    <label for="add-mobile">휴대폰 번호</label>
-                    <input type="text" id="add-mobile" class="form-control" placeholder="010-0000-0000" />
+                    <label>
+                        <input type="checkbox" id="form-active" checked /> 활성 (사용) 상태
+                    </label>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline" id="btn-add-cancel">취소</button>
-                <button type="button" class="btn btn-success" id="btn-add-save">
-                    <i class="ph ph-check"></i> 등록
+                <button type="button" class="btn btn-outline" id="btn-form-cancel">취소</button>
+                <button type="button" class="btn btn-success" id="btn-form-save">
+                    <i class="ph ph-check"></i> <span id="btn-save-text">등록</span>
                 </button>
             </div>
         </div>
     </div>
 
     <script src="/js/common.js"></script>
-    <script src="/js/plannerAdmin.js"></script>
+    <script src="/js/templateAdmin.js"></script>
 </body>
 </html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntalk.choi.repository.SendTemplateMapper">
+
+    <sql id="templateSearchCondition">
+        <if test="keyword != null and keyword != ''">
+            AND (t.title LIKE CONCAT('%', #{keyword}, '%') 
+                 OR t.content_text LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="category != null and category != ''">
+            AND t.category = #{category}
+        </if>
+        <if test="isActive != null">
+            AND t.is_active = #{isActive}
+        </if>
+    </sql>
+
+    <select id="selectTemplateList" parameterType="com.ntalk.choi.domain.SendTemplatePageRequest" resultType="com.ntalk.choi.domain.SendTemplateDTO">
+        SELECT t.template_id, t.title, t.content_text, t.image_url, t.category, t.is_active, t.deleted_at
+        FROM TB_NTALK_SEND_TEMPLATE t
+        WHERE t.deleted_at IS NULL
+        <include refid="templateSearchCondition"/>
+        ORDER BY t.template_id DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="selectTemplateCount" parameterType="com.ntalk.choi.domain.SendTemplatePageRequest" resultType="int">
+        SELECT COUNT(*)
+        FROM TB_NTALK_SEND_TEMPLATE t
+        WHERE t.deleted_at IS NULL
+        <include refid="templateSearchCondition"/>
+    </select>
+
+    <select id="selectTemplateById" resultType="com.ntalk.choi.domain.SendTemplateDTO">
+        SELECT t.template_id, t.title, t.content_text, t.image_url, t.category, t.is_active, t.deleted_at
+        FROM TB_NTALK_SEND_TEMPLATE t
+        WHERE t.template_id = #{templateId} AND t.deleted_at IS NULL
+    </select>
+
+    <insert id="insertTemplate" parameterType="com.ntalk.choi.domain.SendTemplateDTO" useGeneratedKeys="true" keyProperty="templateId">
+        INSERT INTO TB_NTALK_SEND_TEMPLATE (
+            title, content_text, image_url, category, is_active
+        ) VALUES (
+            #{title}, #{contentText}, #{imageUrl}, #{category}, COALESCE(#{isActive}, true)
+        )
+    </insert>
+
+    <update id="updateTemplate" parameterType="com.ntalk.choi.domain.SendTemplateDTO">
+        UPDATE TB_NTALK_SEND_TEMPLATE
+        SET title = #{title},
+            content_text = #{contentText},
+            image_url = #{imageUrl},
+            category = #{category},
+            is_active = #{isActive}
+        WHERE template_id = #{templateId}
+    </update>
+
+    <update id="deleteTemplates" parameterType="java.util.List">
+        UPDATE TB_NTALK_SEND_TEMPLATE
+        SET deleted_at = CURRENT_TIMESTAMP
+        WHERE template_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>
