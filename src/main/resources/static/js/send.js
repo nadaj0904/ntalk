@@ -341,7 +341,8 @@ $(function () {
         'GENERAL': '일반',
         'BIRTHDAY': '생일',
         'CONTRACT': '계약',
-        'PROMOTION': '프로모션'
+        'PROMOTION': '프로모션',
+        'BRAND': '브랜드'
     };
 
     function renderTemplateList(list) {

@@ -40,15 +40,15 @@
     </select>
 
     <insert id="insertSendQueueBatch" parameterType="java.util.List">
-        INSERT INTO MZSENDTRAN (
-            SN, SENDER_KEY, CHANNEL, SND_TYPE, PHONE_NUM, TMPL_CD,
-            SND_MSG, REQ_DTM, TRAN_STS, TR_TYPE_CD, ATTACHMENT, TITLE, HEADER, MSG_TYPE
+        INSERT INTO MZBRMSENDTRAN (
+            SN, SENDER_KEY, CHANNEL, PHONE_NUM, TMPL_CD, TARGET_TYPE, VARIABLE_TYPE,
+            SND_MSG, REQ_DEPT_CD, REQ_USR_ID, REQ_DTM, TRAN_STS, TR_TYPE_CD, MSG_TYPE, ATTACHMENT
         )
         VALUES
         <foreach collection="list" item="i" separator=",">
         (
-            #{i.sn}, #{i.senderKey}, #{i.channel}, #{i.sndType}, #{i.phoneNum}, #{i.tmplCd},
-            #{i.messageText}, #{i.reqDtm}, '1', '1', #{i.attachment}, #{i.title}, #{i.header}, #{i.msgType}
+            #{i.sn}, #{i.senderKey}, #{i.channel}, #{i.phoneNum}, #{i.tmplCd}, #{i.targetType}, #{i.variableType},
+            #{i.messageText}, 'admin', #{i.createdId}, #{i.reqDtm}, '1', '9', #{i.msgType}, #{i.attachment}
         )
         </foreach>
     </insert>

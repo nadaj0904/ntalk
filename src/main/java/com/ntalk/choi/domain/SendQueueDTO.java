@@ -25,7 +25,7 @@ public class SendQueueDTO implements Serializable {
     private String updatedId;
     private LocalDateTime updatedAt;
 
-    // Alimtalk (MZSENDTRAN) 전용 필드
+    // Alimtalk (MZSENDTRAN) / Brand Message (MZBRMSENDTRAN) 전용 필드
     private String sn;
     private String senderKey;
     private String channel;
@@ -37,6 +37,8 @@ public class SendQueueDTO implements Serializable {
     private String title;
     private String header;
     private String msgType;
+    private String targetType;
+    private String variableType;
 
     // JOIN 조회용
     private String customerName;
@@ -107,4 +109,8 @@ public class SendQueueDTO implements Serializable {
     public void setHeader(String header) { this.header = header; }
     public String getMsgType() { return msgType; }
     public void setMsgType(String msgType) { this.msgType = msgType; }
+    public String getTargetType() { return targetType; }
+    public void setTargetType(String targetType) { this.targetType = targetType; }
+    public String getVariableType() { return variableType; }
+    public void setVariableType(String variableType) { this.variableType = variableType; }
 }

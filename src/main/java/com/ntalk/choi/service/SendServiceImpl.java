@@ -52,8 +52,10 @@ public class SendServiceImpl implements SendService {
             // Generate SN
             item.setSn("Test-" + java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 15));
             item.setSenderKey(senderKey);
-            item.setChannel("A"); // Alimtalk
+            item.setChannel("B"); // Brand Message
             item.setSndType("P"); // Push
+            item.setTargetType("F"); // Targeting type
+            item.setVariableType("F"); // Message type '자유형'
             
             // Phone number formatting (digits only)
             if (item.getPhoneNum() != null) {
@@ -67,14 +69,14 @@ public class SendServiceImpl implements SendService {
             item.setReqDtm(reqDtm);
             
             // Set message type
-            if ("TMPL_IMAGE".equals(item.getTmplCd())) {
-                item.setMsgType("AI");
+            if (item.getTmplCd() != null && (item.getTmplCd().equals("BI") || item.getTmplCd().equals("BW"))) {
+                item.setMsgType(item.getTmplCd());
             } else {
-                item.setMsgType("AT");
+                item.setMsgType("BT");
             }
             
             if (item.getTmplCd() == null || item.getTmplCd().isEmpty()) {
-                item.setTmplCd("BASIC-01");
+                item.setTmplCd("BT");
             }
         }
         return sendMapper.insertSendQueueBatch(sendList);
