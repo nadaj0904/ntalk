@@ -1,0 +1,30 @@
+2026-05-03 18:54:02.209 ERROR 23196 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.ntalk.choi.controller.AdminCustomerController required a bean of type 'com.ntalk.choi.service.CustomerService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.ntalk.choi.service.CustomerService' in your configuration.
+
+2026-05-03 20:38:23.857 ERROR 24832 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.ntalk.choi.controller.AdminCustomerController required a bean of type 'com.ntalk.choi.service.CustomerService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.ntalk.choi.service.CustomerService' in your configuration.
+
