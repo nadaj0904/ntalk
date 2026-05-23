@@ -47,7 +47,7 @@
         VALUES
         <foreach collection="list" item="i" separator=",">
         (
-            #{i.sn}, #{i.senderKey}, #{i.channel}, #{i.phoneNum}, #{i.tmplCd}, #{i.targetType}, #{i.variableType},
+            #{i.sn}, #{i.senderKey}, #{i.channel}, #{i.phoneNum}, #{i.tmplCd}, 'I', #{i.variableType},
             #{i.messageText}, 'admin', #{i.createdId}, #{i.reqDtm}, '1', '9', #{i.msgType}, #{i.attachment}
         )
         </foreach>

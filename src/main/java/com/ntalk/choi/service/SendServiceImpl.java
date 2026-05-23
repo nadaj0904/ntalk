@@ -54,8 +54,8 @@ public class SendServiceImpl implements SendService {
             item.setSenderKey(senderKey);
             item.setChannel("B"); // Brand Message
             item.setSndType("P"); // Push
-            item.setTargetType("F"); // Targeting type
-            item.setVariableType("F"); // Message type '자유형'
+            item.setTargetType("I"); // Targeting type
+            item.setVariableType("N"); // Message type '자유형'
             
             // Phone number formatting (digits only)
             if (item.getPhoneNum() != null) {

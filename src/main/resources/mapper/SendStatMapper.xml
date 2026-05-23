@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntalk.choi.repository.SendStatMapper">
+
+    <select id="selectTodaySummary" resultType="com.ntalk.choi.domain.SendStatDTO">
+        SELECT
+            SUM(waiting) AS waitingCount,
+            SUM(success) AS successCount,
+            SUM(failed) AS failedCount,
+            SUM(waiting + success + failed) AS totalCount
+        FROM (
+            SELECT 1 AS waiting, 0 AS success, 0 AS failed
+            FROM MZBRMSENDTRAN
+            WHERE REQ_DTM LIKE CONCAT(TO_CHAR(NOW(), 'YYYYMMDD'), '%')
+            UNION ALL
+            SELECT 0 AS waiting,
+                   CASE WHEN RSLT_CD IN ('0000', '200') THEN 1 ELSE 0 END AS success,
+                   CASE WHEN RSLT_CD NOT IN ('0000', '200') THEN 1 ELSE 0 END AS failed
+            FROM MZBRMSENDLOG
+            WHERE REQ_DTM LIKE CONCAT(TO_CHAR(NOW(), 'YYYYMMDD'), '%')
+        ) t
+    </select>
+
+    <select id="selectTodayDetails" resultType="com.ntalk.choi.domain.SendStatDTO">
+        SELECT
+            COALESCE(MSG_TYPE, '알수없음') AS msgType,
+            COALESCE(REQ_DEPT_CD, '알수없음') AS reqDeptCd,
+            SUM(waiting) AS waitingCount,
+            SUM(success) AS successCount,
+            SUM(failed) AS failedCount,
+            SUM(waiting + success + failed) AS totalCount
+        FROM (
+            SELECT MSG_TYPE, REQ_DEPT_CD, 1 AS waiting, 0 AS success, 0 AS failed
+            FROM MZBRMSENDTRAN
+            WHERE REQ_DTM LIKE CONCAT(TO_CHAR(NOW(), 'YYYYMMDD'), '%')
+            UNION ALL
+            SELECT MSG_TYPE, REQ_DEPT_CD, 0 AS waiting,
+                   CASE WHEN RSLT_CD IN ('0000', '200') THEN 1 ELSE 0 END AS success,
+                   CASE WHEN RSLT_CD NOT IN ('0000', '200') THEN 1 ELSE 0 END AS failed
+            FROM MZBRMSENDLOG
+            WHERE REQ_DTM LIKE CONCAT(TO_CHAR(NOW(), 'YYYYMMDD'), '%')
+        ) t
+        GROUP BY MSG_TYPE, REQ_DEPT_CD
+        ORDER BY msgType, reqDeptCd
+    </select>
+
+</mapper>

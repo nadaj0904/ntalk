@@ -1,0 +1,81 @@
+2026-05-20 20:03:13.935 INFO  38804 --- [main] com.ntalk.choi.NtalkApplicationTests : Starting NtalkApplicationTests using Java 17.0.12 with PID 38804 (started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-20 20:03:13.940 INFO  38804 --- [main] com.ntalk.choi.NtalkApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2026-05-20 20:03:15.071 INFO  38804 --- [main] o.s.cloud.context.scope.GenericScope : BeanFactory id=6ea845da-6c14-3068-b817-78d76a9f2dba
+2026-05-20 20:03:15.907 INFO  38804 --- [main] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-20 20:03:16.564 WARN  38804 --- [main] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20 20:03:16.584 INFO  38804 --- [main] com.ntalk.choi.NtalkApplicationTests : Started NtalkApplicationTests in 3.202 seconds (process running for 4.841)
+2026-05-20 20:03:34.942 INFO  40600 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 40600 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-20 20:03:34.946 INFO  40600 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-20 20:03:34.994 INFO  40600 --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-20 20:03:34.995 INFO  40600 --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-20 20:03:35.802 INFO  40600 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=5f250b03-b376-3dc5-9d65-980f786bb547
+2026-05-20 20:03:36.207 INFO  40600 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-20 20:03:36.220 INFO  40600 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:03:36.223 INFO  40600 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-20 20:03:36.223 INFO  40600 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-20 20:03:36.279 INFO  40600 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1284 ms
+2026-05-20 20:03:36.660 INFO  40600 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-20 20:03:37.079 WARN  40600 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20 20:03:37.135 INFO  40600 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:03:37.164 INFO  40600 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-20 20:03:37.271 INFO  40600 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.893 seconds (process running for 3.7)
+2026-05-20 20:03:58.966 INFO  40600 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-20 20:03:58.966 INFO  40600 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2026-05-20 20:03:58.968 INFO  40600 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 2 ms
+2026-05-20 20:04:12.516 INFO  40600 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2026-05-20 20:04:13.307 INFO  40600 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@582b3f4b
+2026-05-20 20:04:13.310 INFO  40600 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2026-05-20 20:08:41.826 INFO  40600 --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-20 20:08:41.831 INFO  40600 --- [Thread-1] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-20 20:08:41.832 INFO  40600 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:42.002 INFO  40600 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-20 20:08:42.003 INFO  40600 --- [Thread-1] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:42.009 INFO  40600 --- [Thread-1] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2026-05-20 20:08:42.034 INFO  40600 --- [Thread-1] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2026-05-20 20:08:42.209 INFO  40600 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 40600 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-20 20:08:42.209 INFO  40600 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-20 20:08:42.447 INFO  40600 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=5f250b03-b376-3dc5-9d65-980f786bb547
+2026-05-20 20:08:42.487 INFO  40600 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-20 20:08:42.488 INFO  40600 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:42.488 INFO  40600 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-20 20:08:42.488 INFO  40600 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-20 20:08:42.519 INFO  40600 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 307 ms
+2026-05-20 20:08:42.642 INFO  40600 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-20 20:08:42.789 WARN  40600 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20 20:08:42.806 INFO  40600 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:42.809 INFO  40600 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-20 20:08:42.910 INFO  40600 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 0.828 seconds (process running for 309.338)
+2026-05-20 20:08:42.911 INFO  40600 --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-20 20:08:46.575 INFO  40600 --- [RMI TCP Connection(13)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-05-20 20:08:46.577 INFO  40600 --- [RMI TCP Connection(13)-127.0.0.1] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-20 20:08:46.578 INFO  40600 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:46.761 INFO  40600 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-20 20:08:46.761 INFO  40600 --- [RMI TCP Connection(13)-127.0.0.1] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:49.160 INFO  10704 --- [restartedMain] com.ntalk.choi.NtalkApplication : Starting NtalkApplication using Java 17.0.12 with PID 10704 (C:\Dev_ntalk_project\ntalk\target\classes started by jkljkl in C:\Dev_ntalk_project\ntalk)
+2026-05-20 20:08:49.163 INFO  10704 --- [restartedMain] com.ntalk.choi.NtalkApplication : No active profile set, falling back to 1 default profile: "default"
+2026-05-20 20:08:49.207 INFO  10704 --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-20 20:08:49.208 INFO  10704 --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-20 20:08:50.011 INFO  10704 --- [restartedMain] o.s.cloud.context.scope.GenericScope : BeanFactory id=5f250b03-b376-3dc5-9d65-980f786bb547
+2026-05-20 20:08:50.403 INFO  10704 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2026-05-20 20:08:50.413 INFO  10704 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:50.415 INFO  10704 --- [restartedMain] o.apache.catalina.core.StandardService : Starting service [Tomcat]
+2026-05-20 20:08:50.416 INFO  10704 --- [restartedMain] o.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-20 20:08:50.464 INFO  10704 --- [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1255 ms
+2026-05-20 20:08:50.862 INFO  10704 --- [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping : Adding welcome page template: index
+2026-05-20 20:08:51.282 WARN  10704 --- [restartedMain] o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-20 20:08:51.320 INFO  10704 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:08:51.338 INFO  10704 --- [restartedMain] o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path '/'
+2026-05-20 20:08:51.443 INFO  10704 --- [restartedMain] com.ntalk.choi.NtalkApplication : Started NtalkApplication in 2.813 seconds (process running for 3.57)
+2026-05-20 20:09:03.021 INFO  10704 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-20 20:09:03.023 INFO  10704 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2026-05-20 20:09:03.026 INFO  10704 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 2 ms
+2026-05-20 20:09:18.065 INFO  10704 --- [http-nio-8080-exec-7] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2026-05-20 20:09:18.740 INFO  10704 --- [http-nio-8080-exec-7] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7e0f311a
+2026-05-20 20:09:18.744 INFO  10704 --- [http-nio-8080-exec-7] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2026-05-20 20:12:55.486 INFO  10704 --- [RMI TCP Connection(13)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-05-20 20:12:55.489 INFO  10704 --- [RMI TCP Connection(13)-127.0.0.1] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-20 20:12:55.490 INFO  10704 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:12:55.667 INFO  10704 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-20 20:12:55.667 INFO  10704 --- [RMI TCP Connection(13)-127.0.0.1] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
+2026-05-20 20:12:55.674 INFO  10704 --- [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2026-05-20 20:12:55.710 INFO  10704 --- [RMI TCP Connection(13)-127.0.0.1] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
