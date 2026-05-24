@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"/>
-    <title>데이터 관리 - 보험영업지원 시스템</title>
+    <title>데이터 관리 - 모리아스토리채널 시스템</title>
 
     <!-- 폰트: Pretendard -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
@@ -29,7 +29,7 @@
     <aside>
         <div class="logo-area">
             <i class="ph-fill ph-shield-check" style="color: var(--primary-color);"></i>
-            <span style="margin-left: 10px;">보험영업지원</span>
+            <span style="margin-left: 10px;">모리아스토리채널</span>
         </div>
         <nav class="nav-menu">
             <a href="/index" class="nav-item">
@@ -39,6 +39,10 @@
             <a href="/send" class="nav-item">
                 <i class="ph ph-paper-plane-tilt"></i>
                 바로 발송
+            </a>
+            <a href="/channelSend" class="nav-item">
+                <i class="ph ph-chat-circle"></i>
+                채널 발송
             </a>
             <a href="/admin/custAdmin" class="nav-item active">
                 <i class="ph ph-database"></i>

@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"/>
+    <title>채널 발송 - 모리아스토리채널 시스템</title>
+
+    <!-- 폰트 적용: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    
+    <!-- 아이콘 적용: Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- jQuery 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- 스타일 적용 -->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/channelSend.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- 좌측 Sidebar (index.html과 동일 구조)       -->
+    <!-- ========================================== -->
+    <aside>
+        <div class="logo-area">
+            <i class="ph-fill ph-shield-check" style="color: var(--primary-color);"></i>
+            <span style="margin-left: 10px;">모리아스토리채널</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="/index" class="nav-item">
+                <i class="ph ph-squares-four"></i>
+                메인 대시보드 (Home)
+            </a>
+            <a href="/send" class="nav-item">
+                <i class="ph ph-paper-plane-tilt"></i>
+                바로 발송
+            </a>
+            <!-- 채널 발송 신규 메뉴 (활성화 상태) -->
+            <a href="/channelSend" class="nav-item active">
+                <i class="ph ph-chat-circle"></i>
+                채널 발송
+            </a>
+            <a href="/admin/custAdmin" class="nav-item">
+                <i class="ph ph-database"></i>
+                데이터 관리
+            </a>
+            <a href="/admin/plannerAdmin" class="nav-item">
+                <i class="ph ph-user-circle"></i>
+                플래너 관리
+            </a>
+            <a href="/admin/templateAdmin" class="nav-item">
+                <i class="ph ph-chat-circle-text"></i>
+                메세지 관리
+            </a>
+            <a href="/admin/send-stat" class="nav-item">
+                <i class="ph ph-chart-bar"></i>
+                오늘의 발송 현황
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/admin/settings" class="admin-settings">
+                <i class="ph ph-gear"></i>
+                관리자 설정
+            </a>
+        </div>
+    </aside>
+
+    <!-- ========================================== -->
+    <!-- 우측 메인 래퍼                              -->
+    <!-- ========================================== -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header>
+            <div class="header-left">
+                <span>💬 채널 발송 — 카카오 브랜드 메시지 (자유형)</span>
+            </div>
+            
+            <div class="header-right">
+                <!-- 세션 연장 타이머 -->
+                <div class="timer-wrapper" title="남은 세션 시간">
+                    <i class="ph ph-clock"></i>
+                    <span class="time-display" id="session-timer">60:00</span>
+                    <button type="button" class="btn-extend" id="btn-extend">연장</button>
+                </div>
+                
+                <!-- 사용자 정보 -->
+                <div class="user-info">
+                    <div class="avatar" th:text="${user.email != null ? user.email.substring(0,1).toUpperCase() : 'U'}">김</div>
+                    <span th:text="${user.email}">admin@example.com</span>
+                </div>
+                
+                <!-- 로그아웃 -->
+                <a href="/logout" class="btn-logout" title="로그아웃">
+                    <i class="ph ph-sign-out"></i>
+                    <span>로그아웃</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="channel-main">
+            <div class="content-layout">
+                
+                <!-- 1. 좌측 발송 폼 패널 -->
+                <section class="form-panel">
+                    <div class="panel-header">
+                        <i class="ph-fill ph-chat-circle-dots"></i>
+                        브랜드 메시지 작성 (자유형)
+                    </div>
+                    
+                    <form id="brand-send-form" class="send-form">
+                        
+                        <!-- 1. 발송 기본 정보 -->
+                        <div class="form-section">
+                            <h4 class="section-subtitle">기본 설정</h4>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="phoneNum">수신 번호 <span class="required">*</span></label>
+                                    <input type="text" id="phoneNum" name="phoneNum" placeholder="예: 01012345678" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="senderKey">발신 프로필 키 <span class="required">*</span></label>
+                                    <input type="text" id="senderKey" name="senderKey" value="05effb35329654198980dd7e6c6c50f7f2a65deb" disabled>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="targetType">타겟팅 유형 <span class="required">*</span></label>
+                                    <select id="targetType" name="targetType" required>
+                                        <option value="I" selected>I : 발송 대상 ∩ 채널 친구</option>
+                                        <option value="M">M : 광고주 수신동의 유저</option>
+                                        <option value="N">N : 수신동의 유저 - 채널 친구 제외</option>
+                                        <option value="F">F : 전체 채널 친구</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="msgType">메시지 타입 <span class="required">*</span></label>
+                                    <select id="msgType" name="msgType" required>
+                                        <option value="BT" selected>텍스트형 (BT)</option>
+                                        <option value="BI">이미지형 (BI)</option>
+                                        <option value="BW">와이드 이미지형 (BW)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. 메시지 본문 및 이미지 입력 -->
+                        <div class="form-section">
+                            <h4 class="section-subtitle">메시지 콘텐츠</h4>
+                            
+                            <div class="form-group" id="image-url-group" style="display:none;">
+                                <label for="imgUrl">이미지 URL <span class="required">*</span></label>
+                                <div class="url-input-wrap">
+                                    <i class="ph ph-image"></i>
+                                    <input type="url" id="imgUrl" placeholder="카카오 서버에 업로드된 이미지 URL 입력">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="image-link-group" style="display:none;">
+                                <label for="imgLink">이미지 클릭 이동 링크 (URL)</label>
+                                <div class="url-input-wrap">
+                                    <i class="ph ph-link"></i>
+                                    <input type="url" id="imgLink" placeholder="이미지 클릭 시 이동할 모바일/PC URL">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sndMsg">메시지 내용 <span class="required">*</span></label>
+                                <textarea id="sndMsg" name="sndMsg" rows="6" placeholder="메시지 내용을 입력하세요..." required></textarea>
+                                <div class="char-counter"><span id="msg-char-count">0</span> / 1300자</div>
+                            </div>
+                        </div>
+
+                        <!-- 3. 링크 버튼 동적 생성 빌더 -->
+                        <div class="form-section">
+                            <div class="section-header-row">
+                                <h4 class="section-subtitle">링크 버튼 설정 (선택, 최대 5개)</h4>
+                                <button type="button" class="btn-add-item" id="btn-add-button">
+                                    <i class="ph ph-plus"></i> 버튼 추가
+                                </button>
+                            </div>
+                            
+                            <div id="buttons-container" class="dynamic-list-container">
+                                <!-- 동적 버튼들이 들어올 공간 -->
+                                <div class="empty-list-state" id="empty-buttons-state">
+                                    등록된 링크 버튼이 없습니다. 상단의 '버튼 추가' 버튼을 눌러 추가하세요.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. 쿠폰 설정 -->
+                        <div class="form-section">
+                            <h4 class="section-subtitle">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="use-coupon">
+                                    <span class="checkmark"></span>
+                                    쿠폰 첨부 기능 활성화
+                                </label>
+                            </h4>
+                            
+                            <div id="coupon-fields-container" style="display:none;" class="form-grid coupon-box">
+                                <div class="form-group">
+                                    <label for="couponTitle">쿠폰 명칭 <span class="required">*</span></label>
+                                    <input type="text" id="couponTitle" placeholder="예: 브랜드메시지 10% 특별 할인 쿠폰">
+                                </div>
+                                <div class="form-group">
+                                    <label for="couponDesc">쿠폰 설명 <span class="required">*</span></label>
+                                    <input type="text" id="couponDesc" placeholder="예: 10건 무료 발송하기">
+                                </div>
+                                <div class="form-group">
+                                    <label for="couponUrl">쿠폰 랜딩 페이지 (모바일 URL) <span class="required">*</span></label>
+                                    <input type="url" id="couponUrl" placeholder="https://example.com/coupon">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </section>
+
+                <!-- 2. 우측 카카오톡 미리보기 시뮬레이터 -->
+                <section class="simulator-panel">
+                    <div class="panel-header">
+                        <i class="ph-fill ph-device-mobile"></i>
+                        실시간 카카오톡 미리보기
+                    </div>
+                    
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="kakao-header">
+                            <i class="ph ph-caret-left"></i>
+                            <span>모리아스토리채널</span>
+                        </div>
+                        <div class="kakao-body">
+                            <div class="chat-date"><span>오늘</span></div>
+                            
+                            <div class="brand-bubble-wrap">
+                                <div class="brand-profile">
+                                    <div class="profile-avatar"><i class="ph-fill ph-shield-check"></i></div>
+                                    <span class="profile-name">모리아스토리채널</span>
+                                </div>
+                                
+                                <div class="brand-bubble">
+                                    <!-- [1] 상단 이미지 영역 -->
+                                    <div class="sim-image-area" id="sim-image-wrap" style="display:none;">
+                                        <img src="" alt="메시지 이미지" id="sim-image">
+                                    </div>
+                                    
+                                    <!-- [2] 본문 텍스트 영역 -->
+                                    <div class="sim-text-area" id="sim-text">
+                                        안녕하세요. 이곳에 메시지 내용을 작성하시면 실시간으로 반영됩니다.
+                                    </div>
+                                    
+                                    <!-- [3] 동적 버튼 리스트 영역 -->
+                                    <div class="sim-buttons-area" id="sim-buttons-wrap" style="display:none;">
+                                        <!-- 동적 생성되는 링크 버튼 배치 -->
+                                    </div>
+
+                                    <!-- [4] 쿠폰 영역 -->
+                                    <div class="sim-coupon-area" id="sim-coupon-wrap" style="display:none;">
+                                        <div class="sim-coupon-icon"><i class="ph-fill ph-ticket"></i></div>
+                                        <div class="sim-coupon-info">
+                                            <div class="sim-coupon-title" id="sim-coupon-title">쿠폰 명칭</div>
+                                            <div class="sim-coupon-desc" id="sim-coupon-desc">쿠폰 상세 설명</div>
+                                        </div>
+                                        <div class="sim-coupon-action">받기</div>
+                                    </div>
+                                </div>
+                                <span class="bubble-time">오전 11:00</span>
+                            </div>
+                        </div>
+                        <div class="kakao-footer">
+                            <div class="input-mock">메시지 입력은 지원되지 않습니다</div>
+                            <div class="send-icon"><i class="ph-fill ph-paper-plane-right"></i></div>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+            
+            <!-- 3. 하단 액션바 (즉시 전송 버튼) -->
+            <div class="action-footer">
+                <button type="button" class="btn-cancel-action" onclick="location.href='/index'">
+                    <i class="ph ph-x"></i> 취소
+                </button>
+                <button type="button" class="btn-submit-action" id="btn-submit-send">
+                    <i class="ph-fill ph-paper-plane-tilt"></i> 채널 발송 시작
+                </button>
+            </div>
+        </main>
+        
+        <!-- 푸터 -->
+        <footer>
+            <p>&copy; 2026 모리아채널 마케팅 관리자. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- 스크립트 파일 로드 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/channelSend.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-2026-05-24 08:18:06.628 ERROR 54292 --- [http-nio-8080-exec-3] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+2026-05-23 10:50:10.872 ERROR 43284 --- [http-nio-8080-exec-5] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
 org.springframework.web.servlet.resource.NoResourceFoundException: No static resource js/session.js for request '/js/session.js'.
 	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
 	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
@@ -37,7 +37,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-2026-05-24 17:11:23.992 ERROR 47880 --- [http-nio-8080-exec-3] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+2026-05-23 12:17:17.725 ERROR 48632 --- [http-nio-8080-exec-1] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
 org.springframework.web.servlet.resource.NoResourceFoundException: No static resource js/session.js for request '/js/session.js'.
 	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
 	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
@@ -76,7 +76,7 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-2026-05-24 17:42:56.911 ERROR 52936 --- [http-nio-8080-exec-10] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
+2026-05-23 12:34:38.226 ERROR 48632 --- [http-nio-8080-exec-10] c.n.c.c.common.GlobalExceptionHandler : Unhandled Exception caught in GlobalExceptionHandler: 
 org.springframework.web.servlet.resource.NoResourceFoundException: No static resource js/session.js for request '/js/session.js'.
 	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
 	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)

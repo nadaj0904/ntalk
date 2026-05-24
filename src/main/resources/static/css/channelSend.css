@@ -1,0 +1,596 @@
+/* c:\Dev_ntalk_project\ntalk\src\main\resources\static\css\channelSend.css */
+
+.channel-main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 폼과 시뮬레이터 나란히 배치되는 레이아웃 */
+.content-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.form-panel {
+  flex: 1.2;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 6px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-header i {
+  color: var(--primary-color);
+  font-size: 20px;
+}
+
+.send-form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  border-left: 3px solid var(--primary-color);
+  padding-left: 8px;
+  margin-bottom: 4px;
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 폼 그리드 배치 */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 12.5px;
+  font-weight: 550;
+  color: var(--text-main);
+}
+
+.form-group label .required {
+  color: var(--danger-color);
+  margin-left: 2px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.url-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.url-input-wrap i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.url-input-wrap input {
+  padding-left: 36px;
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* 체크박스 커스텀 */
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding-left: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #ffffff;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 4px;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: var(--primary-color);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 4.5px;
+  top: 1.5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* 쿠폰 설정 박스 */
+.coupon-box {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+  margin-top: 4px;
+}
+
+/* 동적 리스트 스타일 */
+.dynamic-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-list-state {
+  text-align: center;
+  padding: 20px;
+  border: 1px dashed var(--border-color);
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background-color: #f8fafc;
+}
+
+.dynamic-item-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.btn-remove-item {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  border-radius: 6px;
+  color: var(--danger-color);
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove-item:hover {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.btn-add-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1px solid var(--primary-color);
+  background-color: #ffffff;
+  color: var(--primary-color);
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-add-item:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* 2. 시뮬레이터 패널 */
+.simulator-panel {
+  flex: 0.8;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 6px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+/* 모바일 프레임 */
+.phone-frame {
+  width: 320px;
+  height: 580px;
+  background: #b2c7da; /* 카카오톡 기본 채팅방 배경색 */
+  border: 12px solid #1e293b;
+  border-radius: 36px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.phone-notch {
+  width: 140px;
+  height: 18px;
+  background: #1e293b;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.kakao-header {
+  height: 50px;
+  background: #9ebbde;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px 0 16px;
+  font-size: 14px;
+  font-weight: bold;
+  gap: 8px;
+}
+
+.kakao-header i {
+  font-size: 18px;
+}
+
+.kakao-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-date {
+  text-align: center;
+  margin: 4px 0;
+}
+
+.chat-date span {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10.5px;
+}
+
+/* 카카오 브랜드 말풍선 */
+.brand-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  max-width: 90%;
+}
+
+.brand-profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.profile-name {
+  font-size: 11px;
+  color: #4e4e4e;
+  font-weight: 550;
+}
+
+.brand-bubble {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sim-image-area {
+  width: 100%;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.sim-image-area img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* 와이드 이미지 비율 처리 */
+.phone-frame.wide-mode .sim-image-area img {
+  aspect-ratio: 2 / 1;
+}
+
+/* 일반 이미지 비율 처리 */
+.phone-frame.image-mode .sim-image-area img {
+  aspect-ratio: 8 / 6;
+}
+
+.sim-text-area {
+  padding: 12px;
+  font-size: 12.5px;
+  color: #111111;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* 시뮬레이터 링크 버튼 영역 */
+.sim-buttons-area {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #f1f5f9;
+}
+
+.sim-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 550;
+  border-bottom: 1px solid #f1f5f9;
+  background-color: #fcfcfc;
+}
+
+.sim-btn:last-child {
+  border-bottom: none;
+}
+
+/* 시뮬레이터 쿠폰 영역 */
+.sim-coupon-area {
+  background-color: #fdf4e3;
+  padding: 10px 12px;
+  border-top: 1px solid #fae6c4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sim-coupon-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #f89d1c;
+  color: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.sim-coupon-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sim-coupon-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #5b4012;
+}
+
+.sim-coupon-desc {
+  font-size: 9.5px;
+  color: #8c672b;
+}
+
+.sim-coupon-action {
+  font-size: 10.5px;
+  font-weight: bold;
+  color: #e28100;
+  border: 1px solid #fbc982;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.bubble-time {
+  font-size: 9px;
+  color: #6a8298;
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+.kakao-footer {
+  height: 44px;
+  background-color: #ffffff;
+  border-top: 1px solid #e1e1e1;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: space-between;
+}
+
+.input-mock {
+  font-size: 12px;
+  color: #b0b0b0;
+}
+
+.send-icon {
+  color: #cccccc;
+  font-size: 18px;
+}
+
+/* 하단 고정 액션바 */
+.action-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.btn-cancel-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: 1px solid var(--border-color);
+  background-color: #ffffff;
+  color: var(--text-muted);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel-action:hover {
+  background-color: #f8fafc;
+  color: var(--text-main);
+}
+
+.btn-submit-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.btn-submit-action:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* 반응형 처리 */
+@media (max-width: 1024px) {
+  .content-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .simulator-panel {
+    order: -1; /* 모바일 시뮬레이터가 태블릿 이하에서는 상단으로 올라감 */
+  }
+  .phone-frame {
+    margin-top: 0;
+  }
+}

@@ -39,15 +39,16 @@
         WHERE template_id = #{templateId} AND deleted_at IS NULL
     </select>
 
+<!-- nclee update-->
     <insert id="insertSendQueueBatch" parameterType="java.util.List">
         INSERT INTO MZBRMSENDTRAN (
-            SN, SENDER_KEY, CHANNEL, PHONE_NUM, TMPL_CD, TARGET_TYPE, VARIABLE_TYPE,
+            SN, SENDER_KEY, CHANNEL, PHONE_NUM, TARGET_TYPE,
             SND_MSG, REQ_DEPT_CD, REQ_USR_ID, REQ_DTM, TRAN_STS, TR_TYPE_CD, MSG_TYPE, ATTACHMENT
         )
         VALUES
         <foreach collection="list" item="i" separator=",">
         (
-            #{i.sn}, #{i.senderKey}, #{i.channel}, #{i.phoneNum}, #{i.tmplCd}, 'I', #{i.variableType},
+            #{i.sn}, #{i.senderKey}, #{i.channel}, #{i.phoneNum}, 'I', 
             #{i.messageText}, 'admin', #{i.createdId}, #{i.reqDtm}, '1', '9', #{i.msgType}, #{i.attachment}
         )
         </foreach>

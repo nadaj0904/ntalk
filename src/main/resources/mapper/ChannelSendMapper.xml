@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ntalk.choi.repository.ChannelSendMapper">
+
+    <!-- 브랜드 메시지 (자유형) 발송 요청 데이터 적재 -->
+    <insert id="insertBrandMessage" parameterType="com.ntalk.choi.domain.ChannelSendDTO">
+        INSERT INTO MZBRMSENDTRAN (
+            SN, 
+            SENDER_KEY, 
+            PHONE_NUM, 
+            REQ_DTM, 
+            TARGET_TYPE, 
+            MSG_TYPE, 
+            SND_MSG, 
+            ATTACHMENT, 
+            HEADER
+        ) VALUES (
+            #{sn}, 
+            #{senderKey}, 
+            #{phoneNum}, 
+            #{reqDtm}, 
+            #{targetType}, 
+            #{msgType}, 
+            #{sndMsg}, 
+            #{attachment}, 
+            #{header}
+        )
+    </insert>
+
+</mapper>

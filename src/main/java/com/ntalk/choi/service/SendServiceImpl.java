@@ -55,7 +55,7 @@ public class SendServiceImpl implements SendService {
             item.setChannel("B"); // Brand Message
             item.setSndType("P"); // Push
             item.setTargetType("I"); // Targeting type
-            item.setVariableType("N"); // Message type '자유형'
+            item.setVariableType(""); // Message type '자유형' //nclee upate
             
             // Phone number formatting (digits only)
             if (item.getPhoneNum() != null) {
@@ -75,9 +75,11 @@ public class SendServiceImpl implements SendService {
                 item.setMsgType("BT");
             }
             
-            if (item.getTmplCd() == null || item.getTmplCd().isEmpty()) {
-                item.setTmplCd("BT");
-            }
+//            if (item.getTmplCd() == null || item.getTmplCd().isEmpty()) {
+//                item.setTmplCd("BT");
+//            }
+            //nclee update
+            item.setTmplCd("");
         }
         return sendMapper.insertSendQueueBatch(sendList);
     }
