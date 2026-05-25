@@ -5,6 +5,7 @@ import com.ntalk.choi.repository.AccountMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +20,12 @@ public class AccountServiceImpl implements AccountService {
 
     private final AccountMapper accountMapper;
     private final PasswordEncoder passwordEncoder;
+    private final SmsSendService smsSendService;
 
-    public AccountServiceImpl(AccountMapper accountMapper, PasswordEncoder passwordEncoder) {
+    public AccountServiceImpl(AccountMapper accountMapper, PasswordEncoder passwordEncoder, SmsSendService smsSendService) {
         this.accountMapper = accountMapper;
         this.passwordEncoder = passwordEncoder;
+        this.smsSendService = smsSendService;
     }
 
     @Override
@@ -51,5 +54,33 @@ public class AccountServiceImpl implements AccountService {
 
         // 4. 실패 시 null 반환
         return null;
+    }
+
+    @Override
+    @Transactional
+    public void resetPassword(String email, String mobile) {
+        log.debug("Attempting to reset password for email: {}, mobile: {}", email, mobile);
+
+        // 1. 이메일과 휴대폰 번호로 사용자 조회
+        AccountDTO account = accountMapper.getAccountByEmailAndMobile(email, mobile);
+
+        if (account != null) {
+            // 2. 임시 비밀번호 생성 (8자리 영문+숫자 무작위)
+            String tempPassword = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
+            log.debug("Generated temporary password for user: {}", email);
+
+            // 3. 비밀번호 해싱 및 DB 업데이트
+            String encodedPassword = passwordEncoder.encode(tempPassword);
+            accountMapper.updatePassword(account.getAccountId(), encodedPassword);
+            log.debug("Updated password in DB for user: {}", email);
+
+            // 4. SMS 발송
+            String message = String.format("[ntalk] 임시 비밀번호는 [%s] 입니다. 로그인 후 반드시 비밀번호를 변경해주세요.", tempPassword);
+            smsSendService.sendSms(mobile, message);
+            log.debug("Sent temporary password SMS to mobile: {}", mobile);
+        } else {
+            log.warn("Password reset failed: Account not found for email: {}, mobile: {}", email, mobile);
+            throw new IllegalArgumentException("입력한 정보와 일치하는 계정이 없습니다.");
+        }
     }
 }

@@ -106,6 +106,42 @@ public class LoginController {
     }
 
     /**
+     * 비밀번호 찾기 페이지 이동
+     */
+    @GetMapping("/login/forgot-password")
+    public String forgotPasswordPage() {
+        return "login/forgot-password";
+    }
+
+    /**
+     * 비밀번호 찾기 처리 (임시 비밀번호 발급 및 발송)
+     */
+    @PostMapping("/api/login/reset-password")
+    @org.springframework.web.bind.annotation.ResponseBody
+    public com.ntalk.choi.domain.common.ApiResponse<String> resetPasswordAjax(
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, String> params) {
+
+        String email = params.get("email");
+        String mobile = params.get("mobile");
+
+        log.debug("Received AJAX reset-password request for email: {}, mobile: {}", email, mobile);
+
+        if (email == null || email.isEmpty() || mobile == null || mobile.isEmpty()) {
+            return com.ntalk.choi.domain.common.ApiResponse.error("이메일과 휴대폰 번호를 모두 입력해주세요.");
+        }
+
+        try {
+            accountService.resetPassword(email, mobile);
+            return com.ntalk.choi.domain.common.ApiResponse.success("임시 비밀번호가 휴대폰으로 발송되었습니다.", "/login");
+        } catch (IllegalArgumentException e) {
+            return com.ntalk.choi.domain.common.ApiResponse.error(e.getMessage());
+        } catch (Exception e) {
+            log.error("Error during password reset", e);
+            return com.ntalk.choi.domain.common.ApiResponse.error("비밀번호 초기화 중 서버 오류가 발생했습니다.");
+        }
+    }
+
+    /**
      * 메인 페이지 이동 (로그인 확인용)
      */
     @GetMapping({"/", "/index"})

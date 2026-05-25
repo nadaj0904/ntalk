@@ -14,4 +14,11 @@ public interface AccountService {
      * @return 로그인 성공 시 계정 정보, 실패 시 null
      */
     AccountDTO login(String email, String password);
+
+    /**
+     * 이메일과 휴대폰 번호로 임시 비밀번호를 생성하고, SMS로 발송한다.
+     * @param email 로그인 이메일
+     * @param mobile 휴대폰 번호
+     */
+    void resetPassword(String email, String mobile);
 }

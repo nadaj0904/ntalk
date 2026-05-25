@@ -10,6 +10,7 @@
         SELECT
             account_id,
             email,
+            mobile,
             password_hash,
             role_type,
             last_login_at,
@@ -31,6 +32,39 @@
         UPDATE TB_NTALK_USER_ACCOUNT
         SET
             last_login_at = CURRENT_TIMESTAMP
+        WHERE
+            account_id = #{accountId}
+    </update>
+
+    <!-- 이메일과 휴대폰 번호 기반 계정 조회 -->
+    <select id="getAccountByEmailAndMobile" resultType="com.ntalk.choi.domain.AccountDTO">
+        SELECT
+            account_id,
+            email,
+            mobile,
+            password_hash,
+            role_type,
+            last_login_at,
+            created_id,
+            created_at,
+            updated_id,
+            updated_at,
+            deleted_id,
+            deleted_at
+        FROM
+            TB_NTALK_USER_ACCOUNT
+        WHERE
+            email = #{email}
+            AND mobile = #{mobile}
+            AND deleted_at IS NULL
+    </select>
+
+    <!-- 비밀번호 업데이트 -->
+    <update id="updatePassword">
+        UPDATE TB_NTALK_USER_ACCOUNT
+        SET
+            password_hash = #{passwordHash},
+            updated_at = CURRENT_TIMESTAMP
         WHERE
             account_id = #{accountId}
     </update>

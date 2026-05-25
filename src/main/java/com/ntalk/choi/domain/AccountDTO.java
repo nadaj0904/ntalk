@@ -12,6 +12,7 @@ public class AccountDTO implements Serializable {
 
     private UUID accountId;
     private String email;
+    private String mobile;
     private String passwordHash;
     private String roleType;
     private LocalDateTime lastLoginAt;
@@ -31,6 +32,9 @@ public class AccountDTO implements Serializable {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getMobile() { return mobile; }
+    public void setMobile(String mobile) { this.mobile = mobile; }
 
     public String getPasswordHash() { return passwordHash; }
     public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
