@@ -2,7 +2,9 @@ package com.ntalk.choi.controller;
 
 import com.ntalk.choi.domain.AccountDTO;
 import com.ntalk.choi.service.AccountService;
+import com.ntalk.choi.service.SmsSendService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +24,14 @@ public class LoginController {
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
     private final AccountService accountService;
+    private final SmsSendService smsSendService;
 
-    public LoginController(AccountService accountService) {
+    @Value("${ntalk.admin.mobile}")
+    private String adminMobile;
+
+    public LoginController(AccountService accountService, SmsSendService smsSendService) {
         this.accountService = accountService;
+        this.smsSendService = smsSendService;
     }
 
     /**
@@ -111,6 +118,50 @@ public class LoginController {
     @GetMapping("/login/forgot-password")
     public String forgotPasswordPage() {
         return "login/forgot-password";
+    }
+
+    /**
+     * 계정 생성 문의 페이지 이동
+     */
+    @GetMapping("/login/register-inquiry")
+    public String registerInquiryPage() {
+        return "login/register-inquiry";
+    }
+
+    /**
+     * 계정 생성 문의 접수 API (관리자에게 SMS 알림 전송)
+     */
+    @PostMapping("/api/login/register-inquiry")
+    @org.springframework.web.bind.annotation.ResponseBody
+    public com.ntalk.choi.domain.common.ApiResponse<String> registerInquiryAjax(
+            @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, String> params) {
+
+        String name = params.getOrDefault("name", "").trim();
+        String email = params.getOrDefault("email", "").trim();
+        String mobile = params.getOrDefault("mobile", "").trim();
+        String organization = params.getOrDefault("organization", "").trim();
+        String message = params.getOrDefault("message", "").trim();
+
+        log.debug("Register inquiry received - name: {}, email: {}, org: {}", name, email, organization);
+
+        if (name.isEmpty() || email.isEmpty() || mobile.isEmpty()) {
+            return com.ntalk.choi.domain.common.ApiResponse.error("이름, 이메일, 연락처는 필수 입력 항목입니다.");
+        }
+
+        try {
+            String smsBody = String.format(
+                "[ntalk] 계정 생성 문의\n이름: %s\n이메일: %s\n연락처: %s\n소속: %s\n내용: %s",
+                name, email, mobile,
+                organization.isEmpty() ? "-" : organization,
+                message.isEmpty() ? "-" : message
+            );
+            smsSendService.sendSms(adminMobile, smsBody);
+            log.info("Register inquiry SMS sent to admin for: {}", email);
+            return com.ntalk.choi.domain.common.ApiResponse.success("계정 생성 문의가 접수되었습니다.", null);
+        } catch (Exception e) {
+            log.error("Failed to send register inquiry SMS", e);
+            return com.ntalk.choi.domain.common.ApiResponse.error("문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        }
     }
 
     /**

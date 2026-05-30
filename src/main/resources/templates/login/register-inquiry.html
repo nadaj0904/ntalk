@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf != null ? _csrf.token : 'dummy-csrf-token'}" />
+    <meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : 'X-CSRF-TOKEN'}" />
+    <title>계정 생성 문의 | ntalk Admin</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script th:src="@{/js/common.js}" src="../../static/js/common.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../../static/css/login.css">
+
+    <style>
+        textarea.form-input {
+            padding: 12px 14px 12px 40px;
+            resize: vertical;
+            min-height: 90px;
+        }
+        .input-icon-top {
+            position: absolute;
+            left: 14px;
+            top: 13px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            pointer-events: none;
+        }
+        .required { color: var(--error-red); margin-left: 2px; }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-wrapper" style="max-width:500px;">
+        <div class="login-card">
+
+            <!-- 뒤로가기 -->
+            <div style="margin-bottom: 20px;">
+                <a href="/login" style="display:inline-flex; align-items:center; gap:6px; color:var(--text-secondary); font-size:13px; text-decoration:none; transition:color 0.2s;"
+                   onmouseover="this.style.color='var(--primary-blue)'" onmouseout="this.style.color='var(--text-secondary)'">
+                    <i class="fa-solid fa-arrow-left" style="font-size:12px;"></i>
+                    로그인 화면으로
+                </a>
+            </div>
+
+            <!-- 헤더 -->
+            <div class="login-header">
+                <div style="width:52px; height:52px; background:linear-gradient(135deg,#059669,#10b981); border-radius:14px; display:flex; align-items:center; justify-content:center; margin:0 auto 14px; box-shadow:0 6px 16px rgba(5,150,105,0.25);">
+                    <i class="fa-solid fa-user-plus" style="font-size:22px; color:#fff;"></i>
+                </div>
+                <h1 class="login-title">계정 생성 문의</h1>
+                <p class="login-subtitle">
+                    ntalk 관리자 시스템은 사전 승인된 계정만 접근 가능합니다.<br>
+                    아래 양식을 작성하시면 담당자가 확인 후 연락드립니다.
+                </p>
+            </div>
+
+            <!-- 안내 박스 -->
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:12px 14px; margin-bottom:24px; display:flex; gap:10px; align-items:flex-start;" id="ri-info-box">
+                <i class="fa-solid fa-circle-info" style="color:#059669; font-size:14px; margin-top:1px; flex-shrink:0;"></i>
+                <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin:0;">문의 접수 후 영업일 기준 1~2일 내에 등록하신 연락처로 안내드립니다.</p>
+            </div>
+
+            <!-- 폼 -->
+            <form id="riForm" onsubmit="return handleRegisterInquiryStandalone(event)">
+
+                <div class="form-group" id="ri-nameGroup">
+                    <label for="ri-name" class="form-label">이름 <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="ri-name" class="form-input"
+                               placeholder="실명을 입력해주세요" maxlength="30">
+                    </div>
+                    <span class="error-message">이름을 입력해주세요.</span>
+                </div>
+
+                <div class="form-group" id="ri-emailGroup">
+                    <label for="ri-email" class="form-label">희망 계정 이메일 <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="ri-email" class="form-input"
+                               placeholder="계정으로 사용할 이메일 주소">
+                    </div>
+                    <span class="error-message">유효한 이메일 형식으로 입력해주세요.</span>
+                </div>
+
+                <div class="form-group" id="ri-mobileGroup">
+                    <label for="ri-mobile" class="form-label">연락처 <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-mobile-screen input-icon"></i>
+                        <input type="tel" id="ri-mobile" class="form-input"
+                               placeholder="01012345678 (숫자만)" maxlength="11"
+                               oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <span class="error-message">올바른 휴대폰 번호를 입력해주세요. (10~11자리)</span>
+                    <p style="font-size:11.5px; color:#aaa; margin-top:4px;">※ '-' 없이 숫자만 입력하세요.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="ri-organization" class="form-label">소속 / 회사</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-building input-icon"></i>
+                        <input type="text" id="ri-organization" class="form-input"
+                               placeholder="소속 또는 회사명 (선택)" maxlength="60">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ri-message" class="form-label">문의 내용</label>
+                    <div class="input-wrapper" style="align-items:flex-start;">
+                        <i class="fa-solid fa-comment-dots input-icon-top"></i>
+                        <textarea id="ri-message" class="form-input"
+                                  placeholder="계정이 필요한 이유나 업무 범위를 간략히 작성해 주세요. (선택)"
+                                  maxlength="300"></textarea>
+                    </div>
+                    <p style="text-align:right; font-size:11.5px; color:#aaa; margin-top:4px;"><span id="ri-msgCount">0</span> / 300자</p>
+                </div>
+
+                <button type="submit" class="btn-login" id="ri-submitBtn"
+                        style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:15px; background-color:#059669;"
+                        onmouseover="this.style.backgroundColor='#047857'" onmouseout="this.style.backgroundColor='#059669'">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    계정 생성 문의 접수
+                </button>
+            </form>
+
+            <!-- 성공 패널 -->
+            <div id="ri-success" style="display:none; text-align:center; padding:16px 0 8px;">
+                <div style="width:62px; height:62px; background:linear-gradient(135deg,#059669,#10b981); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; box-shadow:0 6px 18px rgba(5,150,105,0.28);">
+                    <i class="fa-solid fa-check" style="font-size:26px; color:#fff;"></i>
+                </div>
+                <p style="font-size:18px; font-weight:700; color:var(--text-primary); margin-bottom:10px;">문의 접수 완료!</p>
+                <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:24px;">
+                    계정 생성 문의가 정상적으로 접수되었습니다.<br>
+                    담당자 확인 후 <strong>영업일 1~2일 내</strong>에 연락드리겠습니다.<br>
+                    <small style="color:#aaa;">연락처를 항상 수신 가능한 상태로 유지해 주세요.</small>
+                </p>
+                <a href="/login" class="btn-login"
+                   style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-size:14px; padding:11px 24px; width:auto;">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    로그인 화면으로 이동
+                </a>
+            </div>
+
+            <!-- 푸터 -->
+            <div class="login-footer">
+                <div class="footer-links" style="text-align:center;">
+                    <a href="/login">로그인</a>
+                    &nbsp;|&nbsp;
+                    <a href="/login/forgot-password">비밀번호 찾기</a>
+                </div>
+                <p class="approval-notice" style="margin-top:8px;">© 2026 ntalk Admin System</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script th:src="@{/js/register-inquiry.js}" src="../../static/js/register-inquiry.js"></script>
+    <script>
+        /* standalone 페이지용 래퍼 — register-inquiry.js의 유틸 함수 재사용 */
+        function handleRegisterInquiryStandalone(event) {
+            event.preventDefault();
+
+            const nameVal  = (document.getElementById('ri-name')?.value         || '').trim();
+            const emailVal = (document.getElementById('ri-email')?.value        || '').trim();
+            const mobileVal= (document.getElementById('ri-mobile')?.value       || '').trim();
+            const orgVal   = (document.getElementById('ri-organization')?.value || '').trim();
+            const msgVal   = (document.getElementById('ri-message')?.value      || '').trim();
+
+            let isValid = true;
+
+            if (!nameVal)                                                            { setFieldError('ri-nameGroup',   'ri-name',   true);  isValid = false; }
+            else                                                                     { setFieldError('ri-nameGroup',   'ri-name',   false); }
+
+            if (!emailVal || !validateEmail(emailVal))                               { setFieldError('ri-emailGroup',  'ri-email',  true);  isValid = false; }
+            else                                                                     { setFieldError('ri-emailGroup',  'ri-email',  false); }
+
+            if (!mobileVal || !validateMobile(mobileVal))                            { setFieldError('ri-mobileGroup', 'ri-mobile', true);  isValid = false; }
+            else                                                                     { setFieldError('ri-mobileGroup', 'ri-mobile', false); }
+
+            if (!isValid) return false;
+
+            const btn = document.getElementById('ri-submitBtn');
+            if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 접수 중...'; }
+
+            sendAjax(
+                '/api/login/register-inquiry', 'POST',
+                { name: nameVal, email: emailVal, mobile: mobileVal, organization: orgVal, message: msgVal },
+                function() {
+                    document.getElementById('riForm').style.display      = 'none';
+                    document.getElementById('ri-info-box').style.display = 'none';
+                    document.getElementById('ri-success').style.display  = 'block';
+                },
+                function(msg) {
+                    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> 계정 생성 문의 접수'; }
+                    alert('오류: ' + msg);
+                }
+            );
+            return false;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const msg = document.getElementById('ri-message');
+            const cnt = document.getElementById('ri-msgCount');
+            if (msg && cnt) msg.addEventListener('input', function() { cnt.textContent = this.value.length; });
+        });
+    </script>
+</body>
+
+</html>

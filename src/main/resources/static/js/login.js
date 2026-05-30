@@ -1,5 +1,6 @@
 /**
  * 로그인 페이지 전용 스크립트 (Vanilla JS)
+ * — 로그인 폼, 비밀번호 찾기 모달, 계정 생성 문의 모달 포함
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -99,3 +100,171 @@ function handleLogin(event) {
     event.preventDefault();
     return false;
 }
+
+/* ================================================================
+   모달 공통 유틸
+   ================================================================ */
+
+function openModal(name) {
+    const overlay = document.getElementById('modal-' + name);
+    if (!overlay) return;
+    overlay.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(name) {
+    const overlay = document.getElementById('modal-' + name);
+    if (!overlay) return;
+    overlay.classList.remove('is-active');
+    document.body.style.overflow = '';
+}
+
+function handleOverlayClick(event, name) {
+    if (event.target === event.currentTarget) {
+        closeModal(name);
+    }
+}
+
+// ESC 키로 모달 닫기
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal('forgot-password');
+        closeModal('register-inquiry');
+    }
+});
+
+function setModalFieldError(groupId, inputId, isError) {
+    const group = document.getElementById(groupId);
+    const input = document.getElementById(inputId);
+    if (!group || !input) return;
+    group.classList.toggle('error', isError);
+    input.classList.toggle('has-error', isError);
+}
+
+/* ================================================================
+   비밀번호 찾기 모달
+   ================================================================ */
+
+function handleForgotPassword(event) {
+    event.preventDefault();
+
+    const emailVal  = (document.getElementById('fp-email')?.value  || '').trim();
+    const mobileVal = (document.getElementById('fp-mobile')?.value || '').trim();
+
+    let isValid = true;
+
+    if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        setModalFieldError('fp-emailGroup',  'fp-email',  true);
+        isValid = false;
+    } else {
+        setModalFieldError('fp-emailGroup',  'fp-email',  false);
+    }
+
+    if (!mobileVal || !/^[0-9]{10,11}$/.test(mobileVal)) {
+        setModalFieldError('fp-mobileGroup', 'fp-mobile', true);
+        isValid = false;
+    } else {
+        setModalFieldError('fp-mobileGroup', 'fp-mobile', false);
+    }
+
+    if (!isValid) return false;
+
+    const btn = document.getElementById('fp-submitBtn');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 발송 중...'; }
+
+    sendAjax(
+        '/api/login/reset-password', 'POST',
+        { email: emailVal, mobile: mobileVal },
+        function() {
+            document.getElementById('fpForm').style.display        = 'none';
+            document.getElementById('fp-info-box').style.display   = 'none';
+            document.getElementById('fp-success').style.display    = 'block';
+        },
+        function(msg) {
+            if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> 임시 비밀번호 발송'; }
+            alert('오류: ' + msg);
+        }
+    );
+
+    return false;
+}
+
+/* ================================================================
+   계정 생성 문의 모달
+   ================================================================ */
+
+function handleRegisterInquiry(event) {
+    event.preventDefault();
+
+    const nameVal  = (document.getElementById('ri-name')?.value         || '').trim();
+    const emailVal = (document.getElementById('ri-email')?.value        || '').trim();
+    const mobileVal= (document.getElementById('ri-mobile')?.value       || '').trim();
+    const orgVal   = (document.getElementById('ri-organization')?.value || '').trim();
+    const msgVal   = (document.getElementById('ri-message')?.value      || '').trim();
+
+    let isValid = true;
+
+    if (!nameVal) {
+        setModalFieldError('ri-nameGroup',   'ri-name',   true);
+        isValid = false;
+    } else {
+        setModalFieldError('ri-nameGroup',   'ri-name',   false);
+    }
+
+    if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        setModalFieldError('ri-emailGroup',  'ri-email',  true);
+        isValid = false;
+    } else {
+        setModalFieldError('ri-emailGroup',  'ri-email',  false);
+    }
+
+    if (!mobileVal || !/^[0-9]{10,11}$/.test(mobileVal)) {
+        setModalFieldError('ri-mobileGroup', 'ri-mobile', true);
+        isValid = false;
+    } else {
+        setModalFieldError('ri-mobileGroup', 'ri-mobile', false);
+    }
+
+    if (!isValid) return false;
+
+    const btn = document.getElementById('ri-submitBtn');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 접수 중...'; }
+
+    sendAjax(
+        '/api/login/register-inquiry', 'POST',
+        { name: nameVal, email: emailVal, mobile: mobileVal, organization: orgVal, message: msgVal },
+        function() {
+            document.getElementById('riForm').style.display       = 'none';
+            document.getElementById('ri-info-box').style.display  = 'none';
+            document.getElementById('ri-success').style.display   = 'block';
+        },
+        function(msg) {
+            if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> 계정 생성 문의 접수'; }
+            alert('오류: ' + msg);
+        }
+    );
+
+    return false;
+}
+
+// 계정 생성 문의 — 문자 수 카운터
+document.addEventListener('DOMContentLoaded', function() {
+    const msg = document.getElementById('ri-message');
+    const cnt = document.getElementById('ri-msgCount');
+    if (msg && cnt) {
+        msg.addEventListener('input', function() { cnt.textContent = this.value.length; });
+    }
+
+    // 실시간 에러 해제
+    const fpEmail  = document.getElementById('fp-email');
+    const fpMobile = document.getElementById('fp-mobile');
+    const riName   = document.getElementById('ri-name');
+    const riEmail  = document.getElementById('ri-email');
+    const riMobile = document.getElementById('ri-mobile');
+
+    if (fpEmail)  fpEmail.addEventListener('input',  function() { if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim()))  setModalFieldError('fp-emailGroup',  'fp-email',  false); });
+    if (fpMobile) fpMobile.addEventListener('input', function() { if (/^[0-9]{10,11}$/.test(this.value.trim()))               setModalFieldError('fp-mobileGroup', 'fp-mobile', false); });
+    if (riName)   riName.addEventListener('input',   function() { if (this.value.trim())                                       setModalFieldError('ri-nameGroup',   'ri-name',   false); });
+    if (riEmail)  riEmail.addEventListener('input',  function() { if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim()))  setModalFieldError('ri-emailGroup',  'ri-email',  false); });
+    if (riMobile) riMobile.addEventListener('input', function() { if (/^[0-9]{10,11}$/.test(this.value.trim()))               setModalFieldError('ri-mobileGroup', 'ri-mobile', false); });
+});

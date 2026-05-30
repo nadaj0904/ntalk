@@ -93,14 +93,189 @@
             <!-- 푸터 링크 -->
             <div class="login-footer">
                 <div class="footer-links">
-                    <a href="/login/forgot-password">비밀번호를 잊으셨나요?</a>
+                    <a href="#" onclick="openModal('forgot-password'); return false;">비밀번호를 잊으셨나요?</a>
                     <div>
-                        <a href="/login/register-inquiry">계정 생성 문의</a>
+                        <a href="#" onclick="openModal('register-inquiry'); return false;">계정 생성 문의</a>
                         <p class="approval-notice">(본 관리자 시스템은 사전 승인된 계정만 접근 가능합니다.)</p>
                     </div>
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 모달 1: 비밀번호 찾기                                          -->
+    <!-- ============================================================ -->
+    <div class="modal-overlay" id="modal-forgot-password" onclick="handleOverlayClick(event, 'forgot-password')">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal('forgot-password')" title="닫기">&times;</button>
+
+            <!-- 헤더 -->
+            <div class="modal-header">
+                <div class="modal-icon-badge blue">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                <h2 class="modal-title">비밀번호 찾기</h2>
+                <p class="modal-subtitle">
+                    가입 시 등록한 이메일과 휴대폰 번호를 입력하시면<br>
+                    임시 비밀번호를 문자로 발송해 드립니다.
+                </p>
+            </div>
+
+            <!-- 안내 박스 -->
+            <div class="modal-info-box" id="fp-info-box">
+                <i class="fa-solid fa-circle-info"></i>
+                <p>임시 비밀번호 발급 후 반드시 로그인하여 새 비밀번호로 변경해 주세요.</p>
+            </div>
+
+            <!-- 폼 -->
+            <form id="fpForm" onsubmit="return handleForgotPassword(event)">
+                <div class="form-group" id="fp-emailGroup">
+                    <label for="fp-email" class="form-label">아이디 (이메일)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="fp-email" class="form-input"
+                               placeholder="등록된 이메일 주소" autocomplete="email">
+                    </div>
+                    <span class="error-message">유효한 이메일 형식으로 입력해주세요.</span>
+                </div>
+
+                <div class="form-group" id="fp-mobileGroup">
+                    <label for="fp-mobile" class="form-label">등록된 휴대폰 번호</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-mobile-screen input-icon"></i>
+                        <input type="tel" id="fp-mobile" class="form-input"
+                               placeholder="01012345678 (숫자만)" maxlength="11"
+                               oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <span class="error-message">올바른 휴대폰 번호를 입력해주세요. (10~11자리)</span>
+                    <p class="modal-input-hint">※ '-' 없이 숫자만 입력하세요.</p>
+                </div>
+
+                <button type="submit" class="btn-modal-submit" id="fp-submitBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    임시 비밀번호 발송
+                </button>
+            </form>
+
+            <!-- 성공 패널 -->
+            <div class="modal-success" id="fp-success">
+                <div class="modal-success-icon blue">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="modal-success-title">발송 완료!</p>
+                <p class="modal-success-msg">
+                    임시 비밀번호가 등록된 휴대폰 번호로 전송되었습니다.<br>
+                    <small style="color:#aaa;">로그인 후 반드시 비밀번호를 변경해 주세요.</small>
+                </p>
+                <button class="btn-modal-close-success" onclick="closeModal('forgot-password')">
+                    <i class="fa-solid fa-xmark"></i> 닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 모달 2: 계정 생성 문의                                         -->
+    <!-- ============================================================ -->
+    <div class="modal-overlay" id="modal-register-inquiry" onclick="handleOverlayClick(event, 'register-inquiry')">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal('register-inquiry')" title="닫기">&times;</button>
+
+            <!-- 헤더 -->
+            <div class="modal-header">
+                <div class="modal-icon-badge green">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h2 class="modal-title">계정 생성 문의</h2>
+                <p class="modal-subtitle">
+                    ntalk 관리자 시스템은 사전 승인된 계정만 접근 가능합니다.<br>
+                    아래 양식을 작성하시면 담당자가 확인 후 연락드립니다.
+                </p>
+            </div>
+
+            <!-- 안내 박스 -->
+            <div class="modal-info-box green" id="ri-info-box">
+                <i class="fa-solid fa-circle-info"></i>
+                <p>문의 접수 후 영업일 기준 1~2일 내에 등록하신 연락처로 안내드립니다.</p>
+            </div>
+
+            <!-- 폼 -->
+            <form id="riForm" onsubmit="return handleRegisterInquiry(event)">
+                <div class="form-group" id="ri-nameGroup">
+                    <label for="ri-name" class="form-label">이름 <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="ri-name" class="form-input"
+                               placeholder="실명을 입력해주세요" maxlength="30">
+                    </div>
+                    <span class="error-message">이름을 입력해주세요.</span>
+                </div>
+
+                <div class="form-group" id="ri-emailGroup">
+                    <label for="ri-email" class="form-label">희망 계정 이메일 <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="ri-email" class="form-input"
+                               placeholder="계정으로 사용할 이메일 주소">
+                    </div>
+                    <span class="error-message">유효한 이메일 형식으로 입력해주세요.</span>
+                </div>
+
+                <div class="form-group" id="ri-mobileGroup">
+                    <label for="ri-mobile" class="form-label">연락처 <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-mobile-screen input-icon"></i>
+                        <input type="tel" id="ri-mobile" class="form-input"
+                               placeholder="01012345678 (숫자만)" maxlength="11"
+                               oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <span class="error-message">올바른 휴대폰 번호를 입력해주세요. (10~11자리)</span>
+                    <p class="modal-input-hint">※ '-' 없이 숫자만 입력하세요.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="ri-organization" class="form-label">소속 / 회사</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-building input-icon"></i>
+                        <input type="text" id="ri-organization" class="form-input"
+                               placeholder="소속 또는 회사명 (선택)" maxlength="60">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ri-message" class="form-label">문의 내용</label>
+                    <div class="input-wrapper" style="align-items:flex-start;">
+                        <i class="fa-solid fa-comment-dots input-icon-top"></i>
+                        <textarea id="ri-message" class="form-input"
+                                  placeholder="계정이 필요한 이유나 업무 범위를 간략히 작성해 주세요. (선택)"
+                                  maxlength="300"></textarea>
+                    </div>
+                    <p class="char-count-hint"><span id="ri-msgCount">0</span> / 300자</p>
+                </div>
+
+                <button type="submit" class="btn-modal-submit green" id="ri-submitBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    계정 생성 문의 접수
+                </button>
+            </form>
+
+            <!-- 성공 패널 -->
+            <div class="modal-success" id="ri-success">
+                <div class="modal-success-icon green">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="modal-success-title">문의 접수 완료!</p>
+                <p class="modal-success-msg">
+                    계정 생성 문의가 정상적으로 접수되었습니다.<br>
+                    담당자 확인 후 <strong>영업일 1~2일 내</strong>에 연락드리겠습니다.<br>
+                    <small style="color:#aaa;">연락처를 항상 수신 가능한 상태로 유지해 주세요.</small>
+                </p>
+                <button class="btn-modal-close-success" onclick="closeModal('register-inquiry')">
+                    <i class="fa-solid fa-xmark"></i> 닫기
+                </button>
+            </div>
         </div>
     </div>
 
