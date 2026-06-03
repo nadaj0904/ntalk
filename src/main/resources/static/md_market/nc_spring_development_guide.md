@@ -6,9 +6,15 @@
 
 ---
 
+
+
 ## 1. 기술 아키텍처 개요 (Technology Stack)
 
 새로운 프로젝트를 구현할 때는 반드시 다음 스택 및 버전을 유지해야 합니다.
+
+
+## 개요 (Overview)
+- 모바일에서도 적용 가능한 반응형 웹페지로 구현할 것
 
 ### 백엔드 (Backend)
 <!-- - **Language**: Java 17 사람이 설정-->
@@ -23,6 +29,16 @@
   - `poi-ooxml` (Apache POI 5.2.3): 엑셀 파싱 및 프리뷰/임포트 기능
   - `spring-security-crypto`: 비밀번호 암호화 (`BCryptPasswordEncoder` 단독 사용)
 
+
+### 2.2. 네이밍 컨벤션 (Naming Convention)
+| 항목 | 표준 내용 | 예시 |
+| :--- | :--- | :--- |
+| **패키지 명** | 소문자, 단수 명사 사용 | `com.project.board.controller` |
+| **클래스 명** | 파스칼 케이스(PascalCase), 명사형 | `BoardController`, `UserService` |
+| **인터페이스 명** | 클래스 명 규칙 + 컴포넌트 역할 명시 | `BoardRepository`, `UserMapper` |
+| **메서드 명** | 카멜 케이스(camelCase), 동사+명사 조합 | `getBoardList()`, `insertUser()` |
+| **변수 명** | 카멜 케이스(camelCase), 직관적 해석이 가능한 문구 | `maxCount`, `boardList` |
+| **상수 명** | 모두 대문자, 단어 사이 언더스코어(_) 사용 | `DEFAULT_PAGE_SIZE` |
 
 ### 프론트엔드 (Frontend)
 - **Architecture**: Thymeleaf 기반 서버 사이드 렌더링 (SSR) + Vanilla CSS / Vanilla JS (jQuery 보조)
@@ -122,7 +138,7 @@ public class ApiResponse<T> {
 
 #### **좌측 사이드바 (`aside` - 가로 240px 고정)**
 1. **로고 영역 (`.logo-area` - 높이 60px)**:
-   - 시스템명 및 로고 아이콘 표시. 하단에 미세한 보더 라인 추가 (`border-bottom: 1px solid rgba(255, 255, 255, 0.05);`).
+   - 시스템명 및 로고 아이콘 표시. 하단에 미세한 보더 라인 추가 (`border-bottom: 1px solid rgba(44, 14, 14, 0.05);`).
 2. **네비게이션 메뉴 (`nav.nav-menu`)**:
    - 수직 메뉴 아이템 리스트. 마우스 오버 시 미세한 밝기 변화 애니메이션 적용.
    - 활성화된 메뉴 아이템(`.nav-item.active`)은 파란색 액센트 배경(`rgba(59, 130, 246, 0.1)`)과 왼쪽에 `3px solid var(--primary-color)` 보더 및 강조 컬러 적용.

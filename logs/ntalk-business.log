@@ -254,3 +254,8 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 2026-05-30 15:43:09.259 INFO  17952 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-05-30 15:43:09.260 INFO  17952 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
 2026-05-30 15:43:09.264 INFO  17952 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 4 ms
+2026-05-30 15:47:28.280 INFO  17952 --- [RMI TCP Connection(15)-127.0.0.1] o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-05-30 15:47:28.283 INFO  17952 --- [RMI TCP Connection(15)-127.0.0.1] o.s.boot.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-30 15:47:28.284 INFO  17952 --- [tomcat-shutdown] o.a.coyote.http11.Http11NioProtocol : Pausing ProtocolHandler ["http-nio-8080"]
+2026-05-30 15:47:28.460 INFO  17952 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-05-30 15:47:28.460 INFO  17952 --- [RMI TCP Connection(15)-127.0.0.1] o.a.coyote.http11.Http11NioProtocol : Stopping ProtocolHandler ["http-nio-8080"]
